@@ -4,9 +4,662 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        SizeToContent="WidthAndHeight"
+        Title="Keyboard Trainer"
+        WindowStartupLocation="CenterScreen">
     <Grid>
 
+        <Grid Grid.Row="1" Margin="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0">Start</Button>
+                <Button Grid.Column="1" Margin="5,0,0,0">Stop</Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2" Margin="2">
+            <StackPanel>
+                <StackPanel Background="LightBlue" Orientation="Horizontal">
+                    <TextBlock Background="LightGreen" FontFamily="Consolas" FontSize="20"/>
+                    <TextBlock FontFamily="Consolas" FontSize="20"/>
+                </StackPanel>
+                <StackPanel Background="LightBlue" Orientation="Horizontal">
+                    <TextBlock Background="LightGreen" FontFamily="Consolas" FontSize="20"/>
+                    <TextBlock FontFamily="Consolas" FontSize="20"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="3">
+            <StackPanel Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="~" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="!" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="@" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="#" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="$" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="%" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="^" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="&amp;" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="*" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="(" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text=")" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="_" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="+" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="100">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Backspace" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Tab" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="Q" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="W" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="E" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="R" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="T" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="Y" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="U" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="I" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="O" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="P" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="{}{" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="}" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="|" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Height="50" Width="100">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Caps Lock" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="A" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="S" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="D" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="F" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="G" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="H" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="J" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="K" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="L" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text=":" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="&quot;" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="100">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Enter" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Height="50" Width="125">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Shift" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="Z" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="X" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="C" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="V" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="B" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="N" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="M" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="&lt;" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="&gt;" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="?" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="125">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Shift" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Ctrl" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Win" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Alt" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="294">
+                        <Border Background="#FFE5BB72" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Space" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Alt" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Win" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Ctrl" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="`" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="1" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="2" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="3" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="4" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="5" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="6" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="7" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="8" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="9" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="0" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="-" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="=" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="100">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Backspace" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Tab" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="q" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="w" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="e" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="r" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="t" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="y" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="u" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="i" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="o" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="p" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="[" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="]" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="\" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Height="50" Width="100">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Caps Lock" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="a" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="s" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="d" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="f" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="g" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="h" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="j" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="k" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="l" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text=";" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="'" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="100">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Enter" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Height="50" Width="125">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Shift" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="z" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="x" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="c" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="v" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF77BEF0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="b" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="n" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFDB77F0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="m" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFF07795" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="," VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FFE6F077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="." VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="50">
+                        <Border Background="#FF7FF077" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="30" HorizontalAlignment="Center" Text="/" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="125">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Shift" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Ctrl" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Win" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Alt" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="294">
+                        <Border Background="#FFE5BB72" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Space" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Alt" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Win" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid Height="50" Width="75">
+                        <Border Background="#FFB5B5B5" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="2">
+                            <TextBlock FontSize="15" HorizontalAlignment="Center" Text="Ctrl" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
