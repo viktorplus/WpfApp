@@ -5,14 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Background="{DynamicResource MaterialDesignPaper}"
-        TextElement.FontWeight="Medium"
-        TextElement.FontSize="14"
-        FontFamily="{materialDesign:MaterialDesignFont}">
+        Title="MainWindow" Height="450" Width="800" KeyDown="tbText_KeyDown" KeyUp="Window_KeyUp">
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="10" x:Name="tbText" Text="hello world"
+                 Height="100" VerticalAlignment="Top" materialDesign:HintAssist.Hint="This is a text area"
+                 
+                 AcceptsReturn="True" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged"/>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" x:Name="SPBase" Orientation="Vertical"/>
     </Grid>
+
 </Window>
+
