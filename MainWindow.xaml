@@ -22,6 +22,9 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="10" x:Name="tbText" Text="hello world"
@@ -30,7 +33,10 @@
                  AcceptsReturn="True" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged"/>
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" x:Name="SPBase" Orientation="Vertical"/>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3"  x:Name="SPBase4" Orientation="Vertical"/>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3"  x:Name="SPBase" Orientation="Vertical"/>
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="3"  x:Name="SPBase2" Orientation="Vertical"/>
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="3"  x:Name="SPBase3" Orientation="Vertical"/>
     </Grid>
 
 </Window>
