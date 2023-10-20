@@ -74,7 +74,7 @@ namespace WpfApp
                             {
                                 if ((item2 as Button).Content.ToString() == char.ToLower(key[0]).ToString())
                                 {
-                                    (item2 as Button).Background = new SolidColorBrush(Colors.LemonChiffon);
+                                    (item2 as Button).Background = new SolidColorBrush(Color.FromRgb(0x76, 0xff, 0x03));  //                                    (item2 as Button).Background = new SolidColorBrush(Colors.Red);
                                     break;
                                 }
                             }
@@ -105,7 +105,7 @@ namespace WpfApp
                         {
                             if ((item2 as Button).Content.ToString() == char.ToLower(e.Key.ToString()[0]).ToString())
                             {
-                                (item2 as Button).Background = new SolidColorBrush(Colors.White);
+                                (item2 as Button).Background = new SolidColorBrush(Color.FromRgb(0x30, 0x30, 0x30));
                                 (item2 as Button).UpdateLayout();
                             }
                         }
