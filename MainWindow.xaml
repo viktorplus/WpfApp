@@ -25,19 +25,31 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="10" x:Name="tbText" Text="hello world"
-                 Height="100" VerticalAlignment="Top" materialDesign:HintAssist.Hint="This is a limited text area"
+        <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="10 10 10 10" x:Name="tbText" Text="hello world"
+                 Height="150" VerticalAlignment="Top" materialDesign:HintAssist.Hint="This is a limited text area"
                  
                  AcceptsReturn="True" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged"/>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="3"  x:Name="SPBase4" Orientation="Vertical"/>
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="3"  x:Name="SPBase" Orientation="Vertical"/>
-        <StackPanel Grid.Row="3" Grid.ColumnSpan="3"  x:Name="SPBase2" Orientation="Vertical"/>
-        <StackPanel Grid.Row="4" Grid.ColumnSpan="3"  x:Name="SPBase3" Orientation="Vertical"/>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3"  Margin="25 0 0 0" x:Name="SPBase" Orientation="Vertical"/>
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="3"  Margin="50 0 0 0" x:Name="SPBase2" Orientation="Vertical"/>
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="3"  Margin="75 0 0 0" x:Name="SPBase3" Orientation="Vertical"/>
+        <materialDesign:ColorZone Grid.Row="5" Grid.ColumnSpan="3"  Margin="0 0 0 0" 
+              materialDesign:ElevationAssist.Elevation="Dp4"
+              ClipToBounds="False" CornerRadius="10" Mode="PrimaryDark">
+            <StackPanel Orientation="Horizontal">
+                <ToggleButton
+                            Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                <TextBlock
+                Margin="16,0,0,0" 
+                x:Name="statsTextBlock"
+                VerticalAlignment="Center" />
+            </StackPanel>
+        </materialDesign:ColorZone>
     </Grid>
-
 </Window>
 
