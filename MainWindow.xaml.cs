@@ -1,21 +1,16 @@
 ﻿using WpfApp.Domain;
-using System.DirectoryServices.ActiveDirectory;
-using System.Windows;
-using System.Windows.Input;
 using System.Linq;
 using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-
-
-
+using System.Windows.Input;
 
 namespace WpfApp
 {
     public partial class MainWindow : Window
     {
         UsersList list;
-
         public MainWindow()
         {
             list = new UsersList();
@@ -27,6 +22,7 @@ namespace WpfApp
 
             LVMain.ItemsSource = list.Users;
             SearchTextBox.TextChanged += SearchTextBox_TextChanged;
+
             // Устанавливаем первоначальное значение в текстовые поля
             NameTextBox.Text = "Имя";
             SurnameTextBox.Text = "Фамилия";
@@ -38,21 +34,65 @@ namespace WpfApp
         {
             string name = NameTextBox.Text;
             string surname = SurnameTextBox.Text;
-            string address = AddressTextBox.Text;
-            string phone = PhoneTextBox.Text;
 
-            // Проверка на пустые поля или другие условия
+            // Проверка наличия пользователя с такими именем и фамилией
+            if (list.Users.Any(user => user.Name == name && user.Surname == surname))
+            {
+                MessageBox.Show("Пользователь с таким именем и фамилией уже существует.");
+            }
+            else
+            {
+                string address = AddressTextBox.Text;
+                string phone = PhoneTextBox.Text;
 
-            User newUser = new User("https://illustrators.ru/uploads/illustration/image/1622361/4.jpg", name, surname, address, phone);
-            list.AddUser(newUser);
-            LVMain.Items.Refresh(); // Обновление списка
+                User newUser = new User("https://illustrators.ru/uploads/illustration/image/1622361/4.jpg", name, surname, address, phone);
 
-            // Очистка полей после добавления
-            NameTextBox.Text = "Имя";
-            SurnameTextBox.Text = "Фамилия";
-            AddressTextBox.Text = "Адрес";
-            PhoneTextBox.Text = "Телефон";
+                list.AddUser(newUser);
+                LVMain.Items.Refresh(); // Обновление списка
+
+                // Очистка полей после добавления
+                NameTextBox.Text = "Имя";
+                SurnameTextBox.Text = "Фамилия";
+                AddressTextBox.Text = "Адрес";
+                PhoneTextBox.Text = "Телефон";
+            }
         }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            if (LVMain.SelectedItem is User selectedUser)
+            {
+                string name = NameTextBox.Text;
+                string surname = SurnameTextBox.Text;
+                string address = AddressTextBox.Text;
+                string phone = PhoneTextBox.Text;
+
+                // Проверка наличия пользователя с такими именем и фамилией, исключая текущего выбранного пользователя
+                if (list.Users.Any(user => user != selectedUser && user.Name == name && user.Surname == surname))
+                {
+                    MessageBox.Show("Пользователь с таким именем и фамилией уже существует.");
+                }
+                else
+                {
+                    // Обновите данные выбранного пользователя
+                    selectedUser.Name = name;
+                    selectedUser.Surname = surname;
+                    selectedUser.Address = address;
+                    selectedUser.Phone = phone;
+                }
+            }
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (LVMain.SelectedItem is User selectedUser)
+            {
+                list.RemoveUser(selectedUser);
+                LVMain.Items.Refresh(); // Обновление списка
+            }
+        }
+
+
 
         private void LVMain_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -69,28 +109,7 @@ namespace WpfApp
                 MessageBox.Show($"Имя: {selectedUser.Name}\nНомер телефона: {selectedUser.Phone}", "Позвонить пользователю");
             }
         }
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            string searchQuery = SearchTextBox.Text;
 
-            if (string.IsNullOrWhiteSpace(searchQuery))
-            {
-                // Если поле поиска пустое, показываем всех пользователей
-                LVMain.ItemsSource = list.Users;
-            }
-            else
-            {
-                // поиск или фильтрацию на основе `searchQuery`
-                var searchResults = list.Users.Where(user =>
-                    user.Name.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
-                    user.Surname.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
-                    user.Address.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
-                    user.Phone.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)
-                ).ToList();
-
-                LVMain.ItemsSource = searchResults; // Обновляем список пользователей в LVMain.ItemsSource
-            }
-        }
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string searchQuery = SearchTextBox.Text;
@@ -110,9 +129,10 @@ namespace WpfApp
                     user.Phone.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)
                 ).ToList();
 
-                LVMain.ItemsSource = searchResults; // Обновите список пользователей в LVMain.ItemsSource
+                LVMain.ItemsSource = searchResults;
             }
         }
+
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox textBox)
@@ -123,7 +143,6 @@ namespace WpfApp
                     textBox.Text = string.Empty;
                 }
             }
-
         }
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -138,11 +157,16 @@ namespace WpfApp
             }
         }
 
-
-
-
-
-
-
+        private void LVMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (LVMain.SelectedItem is User selectedUser)
+            {
+                // Заполните текстовые поля данными из выбранного контакта
+                NameTextBox.Text = selectedUser.Name;
+                SurnameTextBox.Text = selectedUser.Surname;
+                AddressTextBox.Text = selectedUser.Address;
+                PhoneTextBox.Text = selectedUser.Phone;
+            }
+        }
     }
 }
