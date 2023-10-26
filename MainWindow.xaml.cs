@@ -2,6 +2,11 @@
 using System.DirectoryServices.ActiveDirectory;
 using System.Windows;
 using System.Windows.Input;
+using System.Linq;
+using System;
+using System.Windows.Controls;
+
+
 
 namespace WpfApp
 {
@@ -19,6 +24,7 @@ namespace WpfApp
             InitializeComponent();
 
             LVMain.ItemsSource = list.Users;
+            SearchTextBox.TextChanged += SearchTextBox_TextChanged;
         }
 
         private void AddUserButton_Click(object sender, RoutedEventArgs e)
@@ -56,21 +62,53 @@ namespace WpfApp
                 MessageBox.Show($"Имя: {selectedUser.Name}\nНомер телефона: {selectedUser.Phone}", "Позвонить пользователю");
             }
         }
-
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             string searchQuery = SearchTextBox.Text;
 
             if (string.IsNullOrWhiteSpace(searchQuery))
             {
-                // код для обработки пустого запроса
+                // Если поле поиска пустое, показываем всех пользователей
+                LVMain.ItemsSource = list.Users;
+            }
+            else
+            {
+                // поиск или фильтрацию на основе `searchQuery`
+                var searchResults = list.Users.Where(user =>
+                    user.Name.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    user.Surname.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    user.Address.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    user.Phone.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)
+                ).ToList();
+
+                LVMain.ItemsSource = searchResults; // Обновляем список пользователей в LVMain.ItemsSource
+            }
+        }
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchQuery = SearchTextBox.Text;
+
+            if (string.IsNullOrWhiteSpace(searchQuery))
+            {
+                // Если поле поиска пустое, покажите всех пользователей
+                LVMain.ItemsSource = list.Users;
             }
             else
             {
                 // Выполните поиск или фильтрацию на основе `searchQuery`
-                // и обновите список пользователей в LVMain.ItemsSource
+                var searchResults = list.Users.Where(user =>
+                    user.Name.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    user.Surname.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    user.Address.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    user.Phone.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)
+                ).ToList();
+
+                LVMain.ItemsSource = searchResults; // Обновите список пользователей в LVMain.ItemsSource
             }
         }
+
+
+
 
     }
 }

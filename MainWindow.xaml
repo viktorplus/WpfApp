@@ -5,43 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="800" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <!-- Поля для поиска и добавления -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-            <TextBox x:Name="SearchTextBox" Width="200">
+            <TextBox x:Name="SearchTextBox" Width="100" TextChanged="SearchTextBox_TextChanged">
                 <TextBox.ToolTip>
                     <ToolTip>Поиск...</ToolTip>
                 </TextBox.ToolTip>
             </TextBox>
-            <Button Content="Искать" Click="SearchButton_Click" Margin="10,0" />
+            <Button Content="Искать" Click="SearchButton_Click" Margin="10,0"  Width="50" />
+
+            <Label Content="Имя:" />
             <TextBox x:Name="NameTextBox" Width="100">
                 <TextBox.ToolTip>
                     <ToolTip>Имя</ToolTip>
                 </TextBox.ToolTip>
             </TextBox>
+
+            <Label Content="Фамилия:" />
             <TextBox x:Name="SurnameTextBox" Width="100">
                 <TextBox.ToolTip>
                     <ToolTip>Фамилия</ToolTip>
                 </TextBox.ToolTip>
             </TextBox>
-            <TextBox x:Name="AddressTextBox" Width="200">
+
+            <Label Content="Адрес:" />
+            <TextBox x:Name="AddressTextBox" Width="100">
                 <TextBox.ToolTip>
                     <ToolTip>Адрес</ToolTip>
                 </TextBox.ToolTip>
             </TextBox>
-            <TextBox x:Name="PhoneTextBox" Width="150">
+
+            <Label Content="Телефон:" />
+            <TextBox x:Name="PhoneTextBox" Width="100">
                 <TextBox.ToolTip>
                     <ToolTip>Телефон</ToolTip>
                 </TextBox.ToolTip>
             </TextBox>
-            <Button Content="Добавить" Click="AddUserButton_Click" Margin="10,0" />
+
+            <Button Content="Добавить" Click="AddUserButton_Click" Margin="10,0"  Width="50"/>
         </StackPanel>
-        <Button Content="Позвонить" Click="CallButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" />
 
         <ListView x:Name="LVMain" Grid.Row="1" MouseDoubleClick="LVMain_MouseDoubleClick">
             <ListView.View>
@@ -64,6 +73,10 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10">
+            <Button Content="Позвонить" Click="CallButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" />
+        </StackPanel>
+
     </Grid>
 </Window>
 
