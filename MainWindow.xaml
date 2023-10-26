@@ -5,45 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="800" Width="1000">
+    <Window.Resources>
+        <Style x:Key="PlaceholderTextBox" TargetType="TextBox">
+            <Setter Property="Foreground" Value="Gray" />
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True" >
+                    <Setter Property="Foreground" Value="Black" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <!-- Поля для поиска и добавления -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-            <TextBox x:Name="SearchTextBox" Width="200">
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Label Content="Поиск" Width="50" VerticalAlignment="Center" Margin="10"/>
+            <TextBox HorizontalAlignment="Right" Width="100" Height="20" Margin="10"  x:Name="SearchTextBox" TextChanged="SearchTextBox_TextChanged" Style="{StaticResource PlaceholderTextBox}" Tag="Поиск" GotFocus="TextBox_GotFocus">
                 <TextBox.ToolTip>
                     <ToolTip>Поиск...</ToolTip>
                 </TextBox.ToolTip>
             </TextBox>
-            <Button Content="Искать" Click="SearchButton_Click" Margin="10,0" />
-            <TextBox x:Name="NameTextBox" Width="100">
-                <TextBox.ToolTip>
-                    <ToolTip>Имя</ToolTip>
-                </TextBox.ToolTip>
-            </TextBox>
-            <TextBox x:Name="SurnameTextBox" Width="100">
-                <TextBox.ToolTip>
-                    <ToolTip>Фамилия</ToolTip>
-                </TextBox.ToolTip>
-            </TextBox>
-            <TextBox x:Name="AddressTextBox" Width="200">
-                <TextBox.ToolTip>
-                    <ToolTip>Адрес</ToolTip>
-                </TextBox.ToolTip>
-            </TextBox>
-            <TextBox x:Name="PhoneTextBox" Width="150">
-                <TextBox.ToolTip>
-                    <ToolTip>Телефон</ToolTip>
-                </TextBox.ToolTip>
-            </TextBox>
-            <Button Content="Добавить" Click="AddUserButton_Click" Margin="10,0" />
         </StackPanel>
-        <Button Content="Позвонить" Click="CallButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" />
 
-        <ListView x:Name="LVMain" Grid.Row="1" MouseDoubleClick="LVMain_MouseDoubleClick">
+        <ListView x:Name="LVMain" Grid.Row="1" ItemsSource="{Binding Users}" MouseDoubleClick="LVMain_MouseDoubleClick" SelectionChanged="LVMain_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Фото" Width="150">
@@ -64,6 +53,40 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+            <TextBox x:Name="PhotoTextBox" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="20" Margin="10" Style="{StaticResource PlaceholderTextBox}" Tag="Ссылка на фото" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus">
+                <TextBox.ToolTip>
+                    <ToolTip>Ссылка на фото</ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
+            <TextBox x:Name="NameTextBox" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="20" Margin="10" Style="{StaticResource PlaceholderTextBox}" Tag="Имя" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus">
+                <TextBox.ToolTip>
+                    <ToolTip>Имя</ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
+
+            <TextBox x:Name="SurnameTextBox" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="20" Margin="10" Style="{StaticResource PlaceholderTextBox}" Tag="Фамилия" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus">
+                <TextBox.ToolTip>
+                    <ToolTip>Фамилия</ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
+
+            <TextBox x:Name="AddressTextBox" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="20" Margin="10" Style="{StaticResource PlaceholderTextBox}" Tag="Адрес" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus">
+                <TextBox.ToolTip>
+                    <ToolTip>Адрес</ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
+
+            <TextBox x:Name="PhoneTextBox" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="20" Margin="10" Style="{StaticResource PlaceholderTextBox}" Tag="Телефон" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus">
+                <TextBox.ToolTip>
+                    <ToolTip>Телефон</ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
+
+            <Button Content="Добавить" Click="AddUserButton_Click" Width="100" Height="20" Margin="10"/>
+            <Button Content="Изменить" Click="Edit_Click" Width="100" Height="20" Margin="10"/>
+            <Button Content="Удалить" Click="Delete_Click" Width="100" Height="20" Margin="10"/>
+            <Button Content="Позвонить" Click="CallButton_Click" Width="100" Height="20" Margin="10"/>
+        </StackPanel>
     </Grid>
 </Window>
-
