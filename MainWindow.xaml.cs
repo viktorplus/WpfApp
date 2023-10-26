@@ -5,6 +5,8 @@ using System.Windows.Input;
 using System.Linq;
 using System;
 using System.Windows.Controls;
+using System.Windows.Media;
+
 
 
 
@@ -25,6 +27,11 @@ namespace WpfApp
 
             LVMain.ItemsSource = list.Users;
             SearchTextBox.TextChanged += SearchTextBox_TextChanged;
+            // Устанавливаем первоначальное значение в текстовые поля
+            NameTextBox.Text = "Имя";
+            SurnameTextBox.Text = "Фамилия";
+            AddressTextBox.Text = "Адрес";
+            PhoneTextBox.Text = "Телефон";
         }
 
         private void AddUserButton_Click(object sender, RoutedEventArgs e)
@@ -41,10 +48,10 @@ namespace WpfApp
             LVMain.Items.Refresh(); // Обновление списка
 
             // Очистка полей после добавления
-            NameTextBox.Text = "";
-            SurnameTextBox.Text = "";
-            AddressTextBox.Text = "";
-            PhoneTextBox.Text = "";
+            NameTextBox.Text = "Имя";
+            SurnameTextBox.Text = "Фамилия";
+            AddressTextBox.Text = "Адрес";
+            PhoneTextBox.Text = "Телефон";
         }
 
         private void LVMain_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -106,6 +113,33 @@ namespace WpfApp
                 LVMain.ItemsSource = searchResults; // Обновите список пользователей в LVMain.ItemsSource
             }
         }
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                textBox.Foreground = Brushes.Black;
+                if (textBox.Text == (string)textBox.Tag)
+                {
+                    textBox.Text = string.Empty;
+                }
+            }
+
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text) || textBox.Text == (string)textBox.Tag)
+                {
+                    textBox.Foreground = Brushes.Gray;
+                    textBox.Text = (string)textBox.Tag;
+                }
+            }
+        }
+
+
+
 
 
 

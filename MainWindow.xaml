@@ -6,6 +6,17 @@
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1000">
+    <Window.Resources>
+        <Style x:Key="PlaceholderTextBox" TargetType="TextBox">
+            <Setter Property="Foreground" Value="Gray" />
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Foreground" Value="Black" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -14,42 +25,38 @@
         </Grid.RowDefinitions>
         <!-- Поля для поиска и добавления -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-            <TextBox x:Name="SearchTextBox" Width="100" TextChanged="SearchTextBox_TextChanged">
+            <TextBox x:Name="SearchTextBox" Width="100" TextChanged="SearchTextBox_TextChanged" Style="{StaticResource PlaceholderTextBox}" Tag="Поиск" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus">
                 <TextBox.ToolTip>
                     <ToolTip>Поиск...</ToolTip>
                 </TextBox.ToolTip>
             </TextBox>
             <Button Content="Искать" Click="SearchButton_Click" Margin="10,0"  Width="50" />
 
-            <Label Content="Имя:" />
-            <TextBox x:Name="NameTextBox" Width="100">
+            <TextBox x:Name="NameTextBox" Width="100" Style="{StaticResource PlaceholderTextBox}" Tag="Имя" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus">
                 <TextBox.ToolTip>
                     <ToolTip>Имя</ToolTip>
                 </TextBox.ToolTip>
             </TextBox>
 
-            <Label Content="Фамилия:" />
-            <TextBox x:Name="SurnameTextBox" Width="100">
+            <TextBox x:Name="SurnameTextBox" Width="100" Style="{StaticResource PlaceholderTextBox}" Tag="Фамилия" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus">
                 <TextBox.ToolTip>
                     <ToolTip>Фамилия</ToolTip>
                 </TextBox.ToolTip>
             </TextBox>
 
-            <Label Content="Адрес:" />
-            <TextBox x:Name="AddressTextBox" Width="100">
+            <TextBox x:Name="AddressTextBox" Width="100" Style="{StaticResource PlaceholderTextBox}" Tag="Адрес" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus">
                 <TextBox.ToolTip>
                     <ToolTip>Адрес</ToolTip>
                 </TextBox.ToolTip>
             </TextBox>
 
-            <Label Content="Телефон:" />
-            <TextBox x:Name="PhoneTextBox" Width="100">
+            <TextBox x:Name="PhoneTextBox" Width="100" Style="{StaticResource PlaceholderTextBox}" Tag="Телефон" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus">
                 <TextBox.ToolTip>
                     <ToolTip>Телефон</ToolTip>
                 </TextBox.ToolTip>
             </TextBox>
 
-            <Button Content="Добавить" Click="AddUserButton_Click" Margin="10,0"  Width="50"/>
+            <Button Content="Добавить" Click="AddUserButton_Click" Margin="10,0"  Width="60"/>
         </StackPanel>
 
         <ListView x:Name="LVMain" Grid.Row="1" MouseDoubleClick="LVMain_MouseDoubleClick">
