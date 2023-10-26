@@ -17,13 +17,14 @@ namespace WpfApp
             list.AddUser(new User(@"https://dthezntil550i.cloudfront.net/kg/latest/kg1802132010216500004834729/1280_960/557d644f-12f3-49e1-bb66-23c16400540d.png", "Илья", "Иванов", "Полтава, Незалежности 35", "380665248654"));
             list.AddUser(new User(@"https://www.malls.ru/upload/medialibrary/0a6/https_hypebeast.com_wp_content_blogs.dir_6_files_2023_01_avatar_4_and_5_movies_confirmed_james_cameron_1.jpg", "Константин", "Петров", "Киев, Свободы 35", "380695545654"));
             list.AddUser(new User(@"https://illustrators.ru/uploads/illustration/image/1687137/14.jpg", "Наталья", "Ершова", "Львов, Соборный проспект 35", "380685758654"));
-            list.AddUser(new User(@"https://illustrators.ru/uploads/illustration/image/1622361/4.jpg", "Ольга", "Васильева", "Днепр, Набережная 35", "38045789654"));
+            list.AddUser(new User(@"https://cdn.icon-icons.com/icons2/2630/PNG/512/diversity_avatar_people_beard_man_icon_159105.png", "Ольга", "Васильева", "Днепр, Набережная 35", "38045789654"));
             InitializeComponent();
 
             LVMain.ItemsSource = list.Users;
             SearchTextBox.TextChanged += SearchTextBox_TextChanged;
 
             // Устанавливаем первоначальное значение в текстовые поля
+            PhotoTextBox.Text = "Ссылка на фото";
             NameTextBox.Text = "Имя";
             SurnameTextBox.Text = "Фамилия";
             AddressTextBox.Text = "Адрес";
@@ -32,8 +33,15 @@ namespace WpfApp
 
         private void AddUserButton_Click(object sender, RoutedEventArgs e)
         {
+            string photo = PhotoTextBox.Text;
             string name = NameTextBox.Text;
             string surname = SurnameTextBox.Text;
+
+            if (string.IsNullOrEmpty(photo) || (photo == "Ссылка на фото"))
+            {
+                // Если ссылка на изображение не указана, используйте изображение по умолчанию
+                photo = "https://cdn.icon-icons.com/icons2/2630/PNG/512/diversity_avatar_people_beard_man_icon_159105.png";
+            }
 
             // Проверка наличия пользователя с такими именем и фамилией
             if (list.Users.Any(user => user.Name == name && user.Surname == surname))
@@ -45,12 +53,13 @@ namespace WpfApp
                 string address = AddressTextBox.Text;
                 string phone = PhoneTextBox.Text;
 
-                User newUser = new User("https://illustrators.ru/uploads/illustration/image/1622361/4.jpg", name, surname, address, phone);
+                User newUser = new User(photo, name, surname, address, phone);
 
                 list.AddUser(newUser);
-                LVMain.Items.Refresh(); // Обновление списка
+                //LVMain.Items.Refresh(); // Обновление списка
 
                 // Очистка полей после добавления
+                PhotoTextBox.Text = "Ссылка на фото";
                 NameTextBox.Text = "Имя";
                 SurnameTextBox.Text = "Фамилия";
                 AddressTextBox.Text = "Адрес";
@@ -88,7 +97,7 @@ namespace WpfApp
             if (LVMain.SelectedItem is User selectedUser)
             {
                 list.RemoveUser(selectedUser);
-                LVMain.Items.Refresh(); // Обновление списка
+                //LVMain.Items.Refresh(); // Обновление списка
             }
         }
 

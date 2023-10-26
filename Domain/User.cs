@@ -17,7 +17,7 @@ namespace WpfApp.Domain
 
         public User(string photo, string name, string surname, string address, string phone)
         {
-            Photo = photo;
+            Photo = string.IsNullOrEmpty(photo) ? "https://cdn.icon-icons.com/icons2/2630/PNG/512/diversity_avatar_people_beard_man_icon_159105.png" : photo;
             Name = name;
             Surname = surname;
             Address = address;

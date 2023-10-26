@@ -54,6 +54,11 @@
             </ListView.View>
         </ListView>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+            <TextBox x:Name="PhotoTextBox" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="20" Margin="10" Style="{StaticResource PlaceholderTextBox}" Tag="Ссылка на фото" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus">
+                <TextBox.ToolTip>
+                    <ToolTip>Ссылка на фото</ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
             <TextBox x:Name="NameTextBox" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="20" Margin="10" Style="{StaticResource PlaceholderTextBox}" Tag="Имя" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus">
                 <TextBox.ToolTip>
                     <ToolTip>Имя</ToolTip>
