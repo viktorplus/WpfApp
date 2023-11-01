@@ -33,8 +33,11 @@ namespace WpfApp
 
         private void Equals_Click(object sender, RoutedEventArgs e)
         {
-            calculator.Calculate();
-            UpdateDisplay();
+            if (calculator.HasPendingOperation())
+            {
+                calculator.Calculate();
+                UpdateDisplay();
+            }
         }
 
         private void DecimalPoint_Click(object sender, RoutedEventArgs e)

@@ -23,32 +23,34 @@
         <TextBox Name="historyTextBox" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="0" TextAlignment="Right" IsReadOnly="True" FontSize="18" />
         <TextBox Name="currentNumberTextBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="0" TextAlignment="Right" IsReadOnly="True" FontSize="24" />
 
-        <Button Content="7" Grid.Row="2" Grid.Column="0" Click="Digit_Click" />
-        <Button Content="8" Grid.Row="2" Grid.Column="1" Click="Digit_Click" />
-        <Button Content="9" Grid.Row="2" Grid.Column="2" Click="Digit_Click" />
-        <Button Content="/" Grid.Row="2" Grid.Column="3" Click="Operation_Click" />
+        <Button Content="7" Grid.Row="3" Grid.Column="0" Click="Digit_Click" />
+        <Button Content="8" Grid.Row="3" Grid.Column="1" Click="Digit_Click" />
+        <Button Content="9" Grid.Row="3" Grid.Column="2" Click="Digit_Click" />
+        <Button Content="/" Grid.Row="3" Grid.Column="3" Click="Operation_Click" />
 
-        <Button Content="4" Grid.Row="3" Grid.Column="0" Click="Digit_Click" />
-        <Button Content="5" Grid.Row="3" Grid.Column="1" Click="Digit_Click" />
-        <Button Content="6" Grid.Row="3" Grid.Column="2" Click="Digit_Click" />
-        <Button Content="*" Grid.Row="3" Grid.Column="3" Click="Operation_Click" />
+        <Button Content="4" Grid.Row="4" Grid.Column="0" Click="Digit_Click" />
+        <Button Content="5" Grid.Row="4" Grid.Column="1" Click="Digit_Click" />
+        <Button Content="6" Grid.Row="4" Grid.Column="2" Click="Digit_Click" />
+        <Button Content="*" Grid.Row="4" Grid.Column="3" Click="Operation_Click" />
 
-        <Button Content="1" Grid.Row="4" Grid.Column="0" Click="Digit_Click" />
-        <Button Content="2" Grid.Row="4" Grid.Column="1" Click="Digit_Click" />
-        <Button Content="3" Grid.Row="4" Grid.Column="2" Click="Digit_Click" />
-        <Button Content="-" Grid.Row="4" Grid.Column="3" Click="Operation_Click" />
+        <Button Content="1" Grid.Row="5" Grid.Column="0" Click="Digit_Click" />
+        <Button Content="2" Grid.Row="5" Grid.Column="1" Click="Digit_Click" />
+        <Button Content="3" Grid.Row="5" Grid.Column="2" Click="Digit_Click" />
+        <Button Content="-" Grid.Row="5" Grid.Column="3" Click="Operation_Click" />
 
-        <Button Content="0" Grid.Row="5" Grid.Column="0" Click="Digit_Click" />
-        <Button Content="." Grid.Row="5" Grid.Column="1" Click="DecimalPoint_Click" />
-        <Button Content="C" Grid.Row="5" Grid.Column="2" Click="Clear_Click" />
-        <Button Content="=" Grid.Row="5" Grid.Column="3" Click="Equals_Click" />
+        <Button Content="0" Grid.Row="6" Grid.Column="0" Click="Digit_Click" />
+        <Button Content="." Grid.Row="6" Grid.Column="1" Click="DecimalPoint_Click" />
 
-        <Button Content="CE" Grid.Row="6" Grid.Column="0" Click="ClearAll_Click" />
-        <Button Grid.Row="6" Grid.Column="1" Click="RemoveLastDigit_Click">
+        <Button Content="=" Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="2" Click="Equals_Click" />
+
+        <Button Content="CE" Grid.Row="2" Grid.Column="0" Click="ClearAll_Click" />
+        <Button Grid.Row="2" Grid.Column="2" Click="RemoveLastDigit_Click">
             <Button.Content>
                 &lt;
             </Button.Content>
         </Button>
+        <Button Content="C" Grid.Row="2" Grid.Column="1" Click="Clear_Click" />
+        <Button Content="+" Grid.Row="2" Grid.Column="3" Click="Operation_Click" />
 
     </Grid>
 </Window>

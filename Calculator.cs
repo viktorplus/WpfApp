@@ -9,6 +9,8 @@ namespace WpfApp
         private StringBuilder history;
         private string lastOperation;
         private double result;
+        private double previousResult;
+        private string previousOperation;
 
         public Calculator()
         {
@@ -16,6 +18,8 @@ namespace WpfApp
             history = new StringBuilder();
             lastOperation = "";
             result = 0;
+            previousResult = 0;
+            previousOperation = "";
         }
 
         public void AppendDigit(string digit)
@@ -37,12 +41,13 @@ namespace WpfApp
         {
             if (currentNumber.Length > 0)
             {
-                if (lastOperation != "")
+                if (previousOperation != "")
                 {
                     Calculate();
                 }
+                previousOperation = lastOperation;
+                previousResult = double.Parse(currentNumber.ToString());
                 lastOperation = operation;
-                result = double.Parse(currentNumber.ToString());
                 history.Append(currentNumber);
                 history.Append(" ");
                 history.Append(operation);
@@ -56,22 +61,22 @@ namespace WpfApp
             if (currentNumber.Length > 0)
             {
                 double secondOperand = double.Parse(currentNumber.ToString());
-                switch (lastOperation)
+                switch (previousOperation)
                 {
                     case "+":
-                        result += secondOperand;
+                        previousResult += secondOperand;
                         break;
                     case "-":
-                        result -= secondOperand;
+                        previousResult -= secondOperand;
                         break;
                     case "*":
-                        result *= secondOperand;
+                        previousResult *= secondOperand;
                         break;
                     case "/":
                         if (secondOperand != 0)
-                            result /= secondOperand;
+                            previousResult /= secondOperand;
                         else
-                            result = double.NaN; // Обработка деления на ноль
+                            previousResult = double.NaN; // Обработка деления на ноль
                         break;
                 }
                 currentNumber.Clear();
@@ -118,9 +123,14 @@ namespace WpfApp
         {
             if (currentNumber.Length == 0)
             {
-                return result.ToString();
+                return previousResult.ToString();
             }
             return currentNumber.ToString();
         }
+        public bool HasPendingOperation()
+        {
+            return !string.IsNullOrEmpty(lastOperation);
+        }
+
     }
 }
