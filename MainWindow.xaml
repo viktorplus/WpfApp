@@ -39,7 +39,7 @@
         <Button Content="-" Grid.Row="5" Grid.Column="3" Click="Operation_Click" />
 
         <Button Content="0" Grid.Row="6" Grid.Column="0" Click="Digit_Click" />
-        <Button Content="." Grid.Row="6" Grid.Column="1" Click="DecimalPoint_Click" />
+        <Button Content="," Grid.Row="6" Grid.Column="1" Click="DecimalPoint_Click" />
 
         <Button Content="=" Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="2" Click="Equals_Click" />
 

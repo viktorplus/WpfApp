@@ -1,137 +1,135 @@
 ﻿using System;
 using System.Text;
 
-namespace WpfApp
+public class Calculator
 {
-    public class Calculator
+    private StringBuilder currentNumber;
+    private string operation;
+    private decimal result;
+    private bool newNumber;
+
+    public Calculator()
     {
-        private StringBuilder currentNumber;
-        private StringBuilder history;
-        private string lastOperation;
-        private double? result;
+        currentNumber = new StringBuilder("0");
+        operation = "";
+        result = 0.0m;
+        newNumber = true;
+    }
 
-        public Calculator()
+    public void AppendDigit(string digit)
+    {
+        if (newNumber)
         {
-            currentNumber = new StringBuilder();
-            history = new StringBuilder();
-            lastOperation = "";
-            result = null;
+            currentNumber.Clear();
+            newNumber = false;
         }
 
-        public void AppendDigit(string digit)
-        {
-            if (digit == "0" && currentNumber.ToString() == "0")
-            {
-                return;
-            }
-
-            if (digit == "." && currentNumber.ToString().Contains("."))
-            {
-                return;
-            }
-
-            currentNumber.Append(digit);
-        }
-
-        public void SetOperation(string operation)
-        {
-            if (currentNumber.Length > 0)
-            {
-                lastOperation = operation;
-                double current = double.Parse(currentNumber.ToString());
-                history.Append(current);
-                history.Append(" ");
-                history.Append(operation);
-                history.Append(" ");
-                currentNumber.Clear();
-            }
-        }
-
-        public void Calculate()
-        {
-            if (currentNumber.Length > 0)
-            {
-                history.Append(currentNumber);
-                history.Append(" ");
-
-                double secondOperand = double.Parse(currentNumber.ToString());
-                switch (lastOperation)
-                {
-                    case "+":
-                        result += secondOperand;
-                        break;
-                    case "-":
-                        result -= secondOperand;
-                        break;
-                    case "*":
-                        result *= secondOperand;
-                        break;
-                    case "/":
-                        if (secondOperand != 0)
-                            result /= secondOperand;
-                        else
-                            result = double.NaN;
-                        break;
-                }
-
-                history.Append('=');
-                history.Append(" ");
-                history.Append(result);
-                history.Append(" ");
-
-                currentNumber.Clear();
-                currentNumber.Append(result.ToString());
-            }
-        }
-
-        public void AppendDecimalPoint()
-        {
-            if (!currentNumber.ToString().Contains("."))
-            {
-                currentNumber.Append(".");
-            }
-        }
-
-        public void Clear()
+        if (currentNumber.ToString() == "0" && digit != ".")
         {
             currentNumber.Clear();
         }
 
-        public void ClearAll()
+        if (digit == "." && currentNumber.ToString().Contains("."))
+        {
+            return;
+        }
+
+        currentNumber.Append(digit);
+    }
+
+    public void SetOperation(string newOperation)
+    {
+        if (!newNumber)
+        {
+            Calculate();
+        }
+        operation = newOperation;
+        result = decimal.Parse(currentNumber.ToString());
+        newNumber = true;
+    }
+
+    public void Calculate()
+    {
+        if (!newNumber && !string.IsNullOrEmpty(operation))
+        {
+            decimal secondNumber = decimal.Parse(currentNumber.ToString());
+            switch (operation)
+            {
+                case "+":
+                    result += secondNumber;
+                    break;
+                case "-":
+                    result -= secondNumber;
+                    break;
+                case "*":
+                    result *= secondNumber;
+                    break;
+                case "/":
+                    if (secondNumber != 0)
+                    {
+                        result /= secondNumber;
+                    }
+                    else
+                    {
+                        ClearAll();
+                        return;
+                    }
+                    break;
+            }
+            operation = "";
+            currentNumber.Clear();
+            currentNumber.Append(result.ToString());
+        }
+    }
+
+    public void AppendDecimalPoint()
+    {
+        if (newNumber || currentNumber.ToString() == "")
         {
             currentNumber.Clear();
-            history.Clear();
-            lastOperation = "";
-            result = null;
+            currentNumber.Append("0");
         }
 
-        public void RemoveLastDigit()
+        if (!currentNumber.ToString().Contains(","))
         {
-            if (currentNumber.Length > 0)
-            {
-                currentNumber.Remove(currentNumber.Length - 1, 1);
-            }
+            currentNumber.Append(",");
         }
+    }
 
-        public string GetHistory()
-        {
-            return history.ToString();
-        }
+    public void Clear()
+    {
+        currentNumber.Clear();
+        currentNumber.Append("0");
+    }
 
-        public string GetCurrentNumber()
+    public void ClearAll()
+    {
+        currentNumber.Clear();
+        operation = "";
+        result = 0.0m;
+        newNumber = true;
+    }
+
+    public void RemoveLastDigit()
+    {
+        if (!newNumber && currentNumber.Length > 0)
         {
+            currentNumber.Remove(currentNumber.Length - 1, 1);
             if (currentNumber.Length == 0)
             {
-                if (result != null)
-                {
-                    return result.Value.ToString();
-                }
-                else
-                {
-                    return "0";
-                }
+                currentNumber.Append("0");
+                newNumber = true;
             }
-            return currentNumber.ToString();
         }
+    }
+
+    public string GetHistory()
+    {
+        return operation != "" ? result.ToString() + " " + operation : "";
+    }
+
+    public string GetCurrentNumber()
+    {
+        return currentNumber.ToString();
     }
 }
