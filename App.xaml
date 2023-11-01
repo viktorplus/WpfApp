@@ -4,6 +4,68 @@
              xmlns:local="clr-namespace:WpfApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <!-- Стиль для зеленой кнопки -->
+        <Style x:Key="GreenButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Green"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Padding" Value="20 5"/>
+            <Setter Property="Margin" Value="10 0 10 0"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для красной кнопки -->
+        <Style x:Key="RedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Padding" Value="20 5"/>
+            <Setter Property="Margin" Value="10 0 10 0"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Стиль для текстовых полей с скругленными углами -->
+        <Style x:Key="RoundedTextBoxStyle" TargetType="Control">
+            <Setter Property="MinWidth" Value="20"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Padding" Value="10 5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Control">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Применение стиля к TextBox и PasswordBox -->
+        <Style TargetType="TextBox" BasedOn="{StaticResource RoundedTextBoxStyle}" />
+        <Style TargetType="PasswordBox" BasedOn="{StaticResource RoundedTextBoxStyle}" />
     </Application.Resources>
 </Application>
