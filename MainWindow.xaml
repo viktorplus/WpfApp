@@ -4,9 +4,75 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
+        
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="600" Width="600">
+    <StackPanel>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Счет" FontSize="24"/>
 
-    </Grid>
+        <Grid x:Name="gameGrid" Margin="5" Width="250" Height="400">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Плитки игрового поля -->
+            <Border Grid.Row="0" Grid.Column="0">
+                <TextBlock />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="1">
+                <TextBlock />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="2" >
+            <TextBlock  FontSize="24"/>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="3" >
+                <TextBlock  FontSize="24"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="0">
+                <TextBlock FontSize="24"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="1" >
+                <TextBlock  FontSize="24"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="2" >
+                <TextBlock  FontSize="24"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="3" >
+                <TextBlock  FontSize="24"/>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="0" >
+                <TextBlock  FontSize="24"/>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="1" >
+                <TextBlock  FontSize="24"/>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="2" >
+                <TextBlock  FontSize="24"/>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="3" >
+                <TextBlock  FontSize="24"/>
+            </Border>
+            <Border Grid.Row="3" Grid.Column="0" >
+                <TextBlock  FontSize="24"/>
+            </Border>
+            <Border Grid.Row="3" Grid.Column="1" >
+                <TextBlock  FontSize="24"/>
+            </Border>
+            <Border Grid.Row="3" Grid.Column="2" >
+                <TextBlock FontSize="24"/>
+            </Border>
+            <Border Grid.Row="3" Grid.Column="3" >
+                <TextBlock  FontSize="24"/>
+            </Border>
+        </Grid>
+    </StackPanel>
 </Window>
