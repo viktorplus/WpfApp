@@ -8,9 +8,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="600">
     <StackPanel>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Счет" FontSize="24"/>
+        <!--<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Счет" FontSize="24"/>-->
+        <TextBlock Text="{Binding Game.Score}" FontSize="24"/>
 
-        <Grid x:Name="gameGrid" Margin="5" Width="250" Height="400">
+
+        <Grid x:Name="gameGrid" Margin="5" Width="250" Height="400" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -26,52 +28,52 @@
 
             <!-- Плитки игрового поля -->
             <Border Grid.Row="0" Grid.Column="0">
-                <TextBlock />
+                <TextBlock Text="{Binding Game.Tiles[0, 0].Value}"/>
             </Border>
             <Border Grid.Row="0" Grid.Column="1">
-                <TextBlock />
+                <TextBlock Text="{Binding Game.Tiles[0, 1].Value}"/>
             </Border>
             <Border Grid.Row="0" Grid.Column="2" >
-            <TextBlock  FontSize="24"/>
+                <TextBlock Text="{Binding Game.Tiles[0, 2].Value}"/>            
             </Border>
             <Border Grid.Row="0" Grid.Column="3" >
-                <TextBlock  FontSize="24"/>
+                <TextBlock Text="{Binding Game.Tiles[0, 3].Value}"/>            
             </Border>
             <Border Grid.Row="1" Grid.Column="0">
-                <TextBlock FontSize="24"/>
+                <TextBlock Text="{Binding Game.Tiles[1, 0].Value}"/>            
             </Border>
             <Border Grid.Row="1" Grid.Column="1" >
-                <TextBlock  FontSize="24"/>
+                <TextBlock Text="{Binding Game.Tiles[1, 1].Value}"/>
             </Border>
             <Border Grid.Row="1" Grid.Column="2" >
-                <TextBlock  FontSize="24"/>
+                <TextBlock Text="{Binding Game.Tiles[1, 2].Value}"/>
             </Border>
             <Border Grid.Row="1" Grid.Column="3" >
-                <TextBlock  FontSize="24"/>
+                <TextBlock Text="{Binding Game.Tiles[1, 3].Value}"/>
             </Border>
             <Border Grid.Row="2" Grid.Column="0" >
-                <TextBlock  FontSize="24"/>
+                <TextBlock Text="{Binding Game.Tiles[2, 0].Value}"/>
             </Border>
             <Border Grid.Row="2" Grid.Column="1" >
-                <TextBlock  FontSize="24"/>
+                <TextBlock Text="{Binding Game.Tiles[2, 1].Value}"/>
             </Border>
             <Border Grid.Row="2" Grid.Column="2" >
-                <TextBlock  FontSize="24"/>
+                <TextBlock Text="{Binding Game.Tiles[2, 2].Value}"/>
             </Border>
             <Border Grid.Row="2" Grid.Column="3" >
-                <TextBlock  FontSize="24"/>
+                <TextBlock Text="{Binding Game.Tiles[2, 3].Value}"/>
             </Border>
             <Border Grid.Row="3" Grid.Column="0" >
-                <TextBlock  FontSize="24"/>
+                <TextBlock Text="{Binding Game.Tiles[3, 0].Value}"/>
             </Border>
             <Border Grid.Row="3" Grid.Column="1" >
-                <TextBlock  FontSize="24"/>
+                <TextBlock Text="{Binding Game.Tiles[3, 1].Value}"/>
             </Border>
             <Border Grid.Row="3" Grid.Column="2" >
-                <TextBlock FontSize="24"/>
+                <TextBlock Text="{Binding Game.Tiles[3, 2].Value}"/>
             </Border>
             <Border Grid.Row="3" Grid.Column="3" >
-                <TextBlock  FontSize="24"/>
+                <TextBlock Text="{Binding Game.Tiles[3, 3].Value}"/>
             </Border>
         </Grid>
     </StackPanel>
