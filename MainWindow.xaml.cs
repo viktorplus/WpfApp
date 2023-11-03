@@ -26,6 +26,7 @@ namespace WpfApp
         {
             InitializeComponent();
             Game = new GameModel();
+            DataContext = this; //  контекст данных для окна
 
         }
         protected override void OnKeyDown(KeyEventArgs e)

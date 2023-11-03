@@ -12,11 +12,12 @@ namespace WpfApp
         private int _num { get; set; }
         private bool _merged { get; set; }
 
-        public Tile (int num, bool merged)
+        public Tile (int num, bool merged) 
         {
-            _num = num;
             _merged = merged;
+            _num = num;
         }
+
         public int Num
         {
             get { return _num; }
