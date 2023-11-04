@@ -9,7 +9,7 @@
     <StackPanel>
         <TextBlock Text="{Binding Score}" FontSize="24"/>
 
-        <Grid x:Name="gameGrid" Margin="5" Width="250" Height="400" >
+        <Grid x:Name="gameGrid" Margin="5" Width="250" Height="400">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -25,28 +25,10 @@
 
             <!-- Плитки игрового поля -->
             <ItemsControl ItemsSource="{Binding Tiles}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                        </Grid>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border>
-                            <TextBlock Text="{Binding Tile.Num}" />
+                            <TextBlock Text="{Binding Num}" />
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
