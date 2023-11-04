@@ -9,7 +9,7 @@
         Title="MainWindow" Height="600" Width="600">
     <StackPanel>
         <!--<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Счет" FontSize="24"/>-->
-        <TextBlock Text="{Binding Game.Score}" FontSize="24"/>
+        <TextBlock Text="{Binding Score}" FontSize="24"/>
 
         <Grid x:Name="gameGrid" Margin="5" Width="250" Height="400" >
             <Grid.RowDefinitions>
@@ -26,7 +26,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Плитки игрового поля -->
-            <ItemsControl ItemsSource="{Binding Game.Tiles}">
+            <ItemsControl ItemsSource="{Binding Tile}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Grid>

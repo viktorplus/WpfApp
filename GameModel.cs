@@ -17,10 +17,16 @@ namespace WpfApp
             _score = 0;
             _isGameOver = false;
 
-            // Здесь можно добавить логику начального расположения плиток
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    _tile[i, j] = new Tile(0, false); // Создаем экземпляры Tile для каждой ячейки
+                }
+            }
         }
 
-        public Tile[,] Tiles
+        public Tile[,] Tile
         {
             get { return _tile; }
             set
@@ -49,7 +55,7 @@ namespace WpfApp
                 OnPropertyChanged(nameof(IsGameOver));
             }
         }
-        public void GenerateNewTiles()
+        public void GenerateNewTile()
         {
             Random random = new Random();
             int value = random.Next(10) == 0 ? 4 : 2; // Вероятность 10% для 4, 90% для 2
@@ -61,7 +67,7 @@ namespace WpfApp
             {
                 for (int col = 0; col < 4; col++)
                 {
-                    if (Tiles[row, col] == null)
+                    if (Tile[row, col].Num == 0)
                     {
                         emptyCells.Add(new Tuple<int, int>(row, col));
                     }
@@ -77,8 +83,8 @@ namespace WpfApp
                 int row = randomCell.Item1;
                 int col = randomCell.Item2;
 
-                Tiles[row, col] = new Tile(value, false); // Создаем новую плитку
-                OnPropertyChanged(nameof(Tiles)); // Вызываем событие PropertyChanged
+                Tile[row, col] = new Tile(value, false); // Создаем новую плитку
+                OnPropertyChanged(nameof(Tile)); // Вызываем событие PropertyChanged
             }
         }
 
@@ -91,25 +97,25 @@ namespace WpfApp
             {
                 for (int col = 1; col < 4; col++)
                 {
-                    if (Tiles[row, col] != null)
+                    if (Tile[row, col].Num != 0)
                     {
                         int targetCol = col - 1;
                         while (targetCol >= 0)
                         {
-                            if (Tiles[row, targetCol] == null)
+                            if (Tile[row, targetCol] == null)
                             {
                                 // Перемещаем ячейку в пустую ячейку слева
-                                Tiles[row, targetCol] = Tiles[row, col];
-                                Tiles[row, col] = null;
+                                Tile[row, targetCol] = Tile[row, col];
+                                Tile[row, col].Num = 0;
                                 hasMoved = true;
                             }
-                            else if (Tiles[row, targetCol].Num == Tiles[row, col].Num && !Tiles[row, targetCol].Merged)
+                            else if (Tile[row, targetCol].Num == Tile[row, col].Num && !Tile[row, targetCol].Merged)
                             {
                                 // Слияние двух ячеек с одинаковыми значениями
-                                Tiles[row, targetCol].Num *= 2;
-                                Score += Tiles[row, targetCol].Num;
-                                Tiles[row, targetCol].Merged = true;
-                                Tiles[row, col] = null;
+                                Tile[row, targetCol].Num *= 2;
+                                Score += Tile[row, targetCol].Num;
+                                Tile[row, targetCol].Merged = true;
+                                Tile[row, col].Num = 0;
                                 hasMoved = true;
                                 break;
                             }
@@ -126,18 +132,18 @@ namespace WpfApp
                 // Сброс флагов слияния после каждой строки
                 for (int col = 0; col < 4; col++)
                 {
-                    if (Tiles[row, col] != null)
+                    if (Tile[row, col].Num != 0)
                     {
-                        Tiles[row, col].Merged = false;
+                        Tile[row, col].Merged = false;
                     }
                 }
             }
 
             if (hasMoved)
             {
-                GenerateNewTiles();
+                GenerateNewTile();
             }
-            OnPropertyChanged(nameof(Tiles));
+            OnPropertyChanged(nameof(Tile));
             OnPropertyChanged(nameof(Score));
         }
 
@@ -151,37 +157,37 @@ namespace WpfApp
                 int targetCol = 3; // Начинаем с крайней правой ячейки в строке
                 for (int col = 3; col >= 0; col--)
                 {
-                    if (Tiles[row, col] != null)
+                    if (Tile[row, col].Num != 0)
                     {
                         if (targetCol == col)
                         {
                             // Текущая ячейка уже находится в крайней правой позиции,
                             // нет необходимости перемещать ее
                         }
-                        else if (Tiles[row, targetCol] == null)
+                        else if (Tile[row, targetCol].Num == 0)
                         {
                             // Ячейка справа пустая, перемещаем текущую ячейку вправо
-                            Tiles[row, targetCol] = Tiles[row, col];
-                            Tiles[row, col] = null;
+                            Tile[row, targetCol] = Tile[row, col];
+                            Tile[row, col].Num = 0;
                             hasMoved = true;
                         }
-                        else if (Tiles[row, targetCol].Num == Tiles[row, col].Num && !Tiles[row, targetCol].Merged)
+                        else if (Tile[row, targetCol].Num == Tile[row, col].Num && !Tile[row, targetCol].Merged)
                         {
                             // Обе ячейки имеют одинаковые значения и не были объединены
                             // Удваиваем значение ячейки справа и удаляем текущую ячейку
-                            Tiles[row, targetCol].Num *= 2;
-                            Tiles[row, targetCol].Merged = true;
-                            Tiles[row, col] = null;
-                            Score += Tiles[row, targetCol].Num; // Увеличиваем счет
+                            Tile[row, targetCol].Num *= 2;
+                            Tile[row, targetCol].Merged = true;
+                            Tile[row, col].Num = 0;
+                            Score += Tile[row, targetCol].Num; // Увеличиваем счет
                         }
                         else
                         {
                             // Ячейка справа имеет разное значение или уже объединена,
                             // перемещаем текущую ячейку вправо, но на одну позицию левее
                             targetCol--;
-                            Tiles[row, targetCol] = Tiles[row, col];
+                            Tile[row, targetCol] = Tile[row, col];
                             if (col != targetCol)
-                                Tiles[row, col] = null;
+                                Tile[row, col].Num = 0;
                             hasMoved = true;
                         }
                     }
@@ -189,17 +195,17 @@ namespace WpfApp
                 // Сброс флагов слияния после каждой строки
                 for (int col = 0; col < 4; col++)
                 {
-                    if (Tiles[row, col] != null)
+                    if (Tile[row, col].Num != 0)
                     {
-                        Tiles[row, col].Merged = false;
+                        Tile[row, col].Merged = false;
                     }
                 }
             }
             if (hasMoved)
             {
-                GenerateNewTiles();
+                GenerateNewTile();
             }
-            OnPropertyChanged(nameof(Tiles));
+            OnPropertyChanged(nameof(Tile));
             OnPropertyChanged(nameof(Score));
         }
 
@@ -212,37 +218,37 @@ namespace WpfApp
                 int targetRow = 0; // Начинаем с верхней строки в столбце
                 for (int row = 0; row < 4; row++)
                 {
-                    if (Tiles[row, col] != null)
+                    if (Tile[row, col].Num != 0)
                     {
                         if (targetRow == row)
                         {
                             // Текущая ячейка уже находится в верхней позиции,
                             // нет необходимости перемещать ее
                         }
-                        else if (Tiles[targetRow, col] == null)
+                        else if (Tile[targetRow, col].Num == 0)
                         {
                             // Ячейка сверху пустая, перемещаем текущую ячейку вверх
-                            Tiles[targetRow, col] = Tiles[row, col];
-                            Tiles[row, col] = null;
+                            Tile[targetRow, col] = Tile[row, col];
+                            Tile[row, col].Num = 0;
                             hasMoved = true;
                         }
-                        else if (Tiles[targetRow, col].Num == Tiles[row, col].Num && !Tiles[targetRow, col].Merged)
+                        else if (Tile[targetRow, col].Num == Tile[row, col].Num && !Tile[targetRow, col].Merged)
                         {
                             // Обе ячейки имеют одинаковые значения и не были объединены
                             // Удваиваем значение ячейки сверху и удаляем текущую ячейку
-                            Tiles[targetRow, col].Num *= 2;
-                            Tiles[targetRow, col].Merged = true;
-                            Tiles[row, col] = null;
-                            Score += Tiles[targetRow, col].Num; // Увеличиваем счет
+                            Tile[targetRow, col].Num *= 2;
+                            Tile[targetRow, col].Merged = true;
+                            Tile[row, col].Num = 0;
+                            Score += Tile[targetRow, col].Num; // Увеличиваем счет
                         }
                         else
                         {
                             // Ячейка сверху имеет разное значение или уже объединена,
                             // перемещаем текущую ячейку вверх, но на одну позицию ниже
                             targetRow++;
-                            Tiles[targetRow, col] = Tiles[row, col];
+                            Tile[targetRow, col] = Tile[row, col];
                             if (row != targetRow)
-                                Tiles[row, col] = null;
+                                Tile[row, col].Num = 0;
                             hasMoved = true;
                         }
                     }
@@ -250,17 +256,17 @@ namespace WpfApp
                 // Сброс флагов слияния после каждого столбца
                 for (int row = 0; row < 4; row++)
                 {
-                    if (Tiles[row, col] != null)
+                    if (Tile[row, col].Num != 0)
                     {
-                        Tiles[row, col].Merged = false;
+                        Tile[row, col].Merged = false;
                     }
                 }
             }
             if (hasMoved)
             {
-                GenerateNewTiles();
+                GenerateNewTile();
             }
-            OnPropertyChanged(nameof(Tiles));
+            OnPropertyChanged(nameof(Tile));
             OnPropertyChanged(nameof(Score));
         }
 
@@ -273,37 +279,37 @@ namespace WpfApp
                 int targetRow = 3; // Начинаем с нижней строки в столбце
                 for (int row = 3; row >= 0; row--)
                 {
-                    if (Tiles[row, col] != null)
+                    if (Tile[row, col].Num != 0)
                     {
                         if (targetRow == row)
                         {
                             // Текущая ячейка уже находится в нижней позиции,
                             // нет необходимости перемещать ее
                         }
-                        else if (Tiles[targetRow, col] == null)
+                        else if (Tile[targetRow, col].Num == 0)
                         {
                             // Ячейка снизу пустая, перемещаем текущую ячейку вниз
-                            Tiles[targetRow, col] = Tiles[row, col];
-                            Tiles[row, col] = null;
+                            Tile[targetRow, col] = Tile[row, col];
+                            Tile[row, col].Num = 0;
                             hasMoved = true;
                         }
-                        else if (Tiles[targetRow, col].Num == Tiles[row, col].Num && !Tiles[targetRow, col].Merged)
+                        else if (Tile[targetRow, col].Num == Tile[row, col].Num && !Tile[targetRow, col].Merged)
                         {
                             // Обе ячейки имеют одинаковые значения и не были объединены
                             // Удваиваем значение ячейки снизу и удаляем текущую ячейку
-                            Tiles[targetRow, col].Num *= 2;
-                            Tiles[targetRow, col].Merged = true;
-                            Tiles[row, col] = null;
-                            Score += Tiles[targetRow, col].Num; // Увеличиваем счет
+                            Tile[targetRow, col].Num *= 2;
+                            Tile[targetRow, col].Merged = true;
+                            Tile[row, col].Num = 0;
+                            Score += Tile[targetRow, col].Num; // Увеличиваем счет
                         }
                         else
                         {
                             // Ячейка снизу имеет разное значение или уже объединена,
                             // перемещаем текущую ячейку вниз, но на одну позицию выше
                             targetRow--;
-                            Tiles[targetRow, col] = Tiles[row, col];
+                            Tile[targetRow, col] = Tile[row, col];
                             if (row != targetRow)
-                                Tiles[row, col] = null;
+                                Tile[row, col].Num = 0;
                             hasMoved = true;
                         }
                     }
@@ -311,17 +317,17 @@ namespace WpfApp
                 // Сброс флагов слияния после каждого столбца
                 for (int row = 3; row >= 0; row--)
                 {
-                    if (Tiles[row, col] != null)
+                    if (Tile[row, col].Num != 0)
                     {
-                        Tiles[row, col].Merged = false;
+                        Tile[row, col].Merged = false;
                     }
                 }
             }
             if (hasMoved)
             {
-                GenerateNewTiles();
+                GenerateNewTile();
             }
-            OnPropertyChanged(nameof(Tiles));
+            OnPropertyChanged(nameof(Tile));
             OnPropertyChanged(nameof(Score));
         }
 
