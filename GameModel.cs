@@ -15,7 +15,7 @@ namespace WpfApp
         public GameModel()
         {
             _tile = new Tiles[4, 4]; // Инициализируем поле 4x4
-            _score = 1;
+            _score = 0;
             _isGameOver = false;
 
             for (int i = 0; i < 4; i++)
@@ -27,6 +27,7 @@ namespace WpfApp
             }
 
             GenerateNewTile(); // Вызываем метод для создания начальных плиток
+            UpdateTileValues();
         }
         public Tiles[,] Tile
         {
@@ -79,7 +80,7 @@ namespace WpfApp
                 for (int col = 0; col < 4; col++)
                 {
                     int index = row * 4 + col;
-                    TileValues[index] = _tile[row, col].Num;
+                    TileValues[index] = Tile[row, col].Num;
                 }
             }
 
@@ -90,7 +91,10 @@ namespace WpfApp
         public void GenerateNewTile()
         {
             Random random = new Random();
-            int value = random.Next(10) == 0 ? 4 : 2; // Вероятность 10% для 4, 90% для 2
+
+            // Генерируем два значения: первое для первой новой плитки и второе для второй
+            int value1 = random.Next(10) == 0 ? 4 : 2; // Вероятность 10% для 4, 90% для 2
+            int value2 = random.Next(10) == 0 ? 4 : 2; // Второе случайное значение
 
             List<Tuple<int, int>> emptyCells = new List<Tuple<int, int>>();
 
@@ -106,17 +110,26 @@ namespace WpfApp
                 }
             }
 
-            // Если есть пустые ячейки, выбираем случайную и добавляем новую плитку
-            if (emptyCells.Count > 0)
+            // Если есть пустые ячейки, выбираем случайные и добавляем новые плитки
+            if (emptyCells.Count >= 2)
             {
-                int randomIndex = random.Next(emptyCells.Count);
-                Tuple<int, int> randomCell = emptyCells[randomIndex];
+                int randomIndex1 = random.Next(emptyCells.Count);
+                Tuple<int, int> randomCell1 = emptyCells[randomIndex1];
+                emptyCells.RemoveAt(randomIndex1); // Убираем первую выбранную ячейку
 
-                int row = randomCell.Item1;
-                int col = randomCell.Item2;
+                int randomIndex2 = random.Next(emptyCells.Count);
+                Tuple<int, int> randomCell2 = emptyCells[randomIndex2];
 
-                Tile[row, col] = new Tiles(value, false); // Создаем новую плитку
+                int row1 = randomCell1.Item1;
+                int col1 = randomCell1.Item2;
+                int row2 = randomCell2.Item1;
+                int col2 = randomCell2.Item2;
+
+                Tile[row1, col1] = new Tiles(value1, false); // Создаем первую новую плитку
+                Tile[row2, col2] = new Tiles(value2, false); // Создаем вторую новую плитку
+
                 OnPropertyChanged(nameof(Tile)); // Вызываем событие PropertyChanged
+                UpdateTileValues();
             }
         }
 
@@ -177,6 +190,8 @@ namespace WpfApp
             }
             OnPropertyChanged(nameof(Tile));
             OnPropertyChanged(nameof(Score));
+            UpdateTileValues();
+
         }
 
 
@@ -239,6 +254,8 @@ namespace WpfApp
             }
             OnPropertyChanged(nameof(Tile));
             OnPropertyChanged(nameof(Score));
+            UpdateTileValues();
+
         }
 
 
@@ -300,6 +317,8 @@ namespace WpfApp
             }
             OnPropertyChanged(nameof(Tile));
             OnPropertyChanged(nameof(Score));
+            UpdateTileValues();
+
         }
 
 
@@ -361,6 +380,8 @@ namespace WpfApp
             }
             OnPropertyChanged(nameof(Tile));
             OnPropertyChanged(nameof(Score));
+            UpdateTileValues();
+
         }
 
 
