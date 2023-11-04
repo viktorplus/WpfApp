@@ -8,13 +8,14 @@ namespace WpfApp
     public class GameModel : INotifyPropertyChanged
     {
         private Tiles[,] _tile;
+        private int[] _tileValues = new int[16];
         private int _score;
         private bool _isGameOver;
 
         public GameModel()
         {
             _tile = new Tiles[4, 4]; // Инициализируем поле 4x4
-            _score = 0;
+            _score = 1;
             _isGameOver = false;
 
             for (int i = 0; i < 4; i++)
@@ -27,8 +28,6 @@ namespace WpfApp
 
             GenerateNewTile(); // Вызываем метод для создания начальных плиток
         }
-
-
         public Tiles[,] Tile
         {
             get { return _tile; }
@@ -36,6 +35,19 @@ namespace WpfApp
             {
                 _tile = value;
                 OnPropertyChanged(nameof(Tile));
+                UpdateTileValues();
+
+            }
+        }
+
+        public int[] TileValues
+        {
+            get { return _tileValues; }
+            set
+            {
+                _tileValues = value;
+                OnPropertyChanged(nameof(TileValues));
+
             }
         }
 
@@ -58,6 +70,23 @@ namespace WpfApp
                 OnPropertyChanged(nameof(IsGameOver));
             }
         }
+
+        public void UpdateTileValues()
+        {
+            // Обновляем одномерный массив на основе двухмерного массива
+            for (int row = 0; row < 4; row++)
+            {
+                for (int col = 0; col < 4; col++)
+                {
+                    int index = row * 4 + col;
+                    TileValues[index] = _tile[row, col].Num;
+                }
+            }
+
+            // Уведомляем интерфейс пользователя о изменении данных в одномерном массиве
+            OnPropertyChanged(nameof(TileValues));
+        }
+
         public void GenerateNewTile()
         {
             Random random = new Random();

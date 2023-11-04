@@ -10,25 +10,18 @@
         <TextBlock Text="{Binding Score}" FontSize="24"/>
 
         <Grid x:Name="gameGrid" Margin="5" Width="250" Height="400">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
             <!-- Плитки игрового поля -->
-            <ItemsControl ItemsSource="{Binding Tiles}">
+            <ItemsControl Grid.Row="0" Grid.Column="0" ItemsSource="{Binding TileValues}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="4" Columns="4"/>
+                        <!-- UniformGrid для равномерного размещения элементов -->
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border>
-                            <TextBlock Text="{Binding Num}" />
+                            <TextBlock Text="{Binding}" />
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
