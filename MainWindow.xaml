@@ -4,11 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
-        
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="600">
     <StackPanel>
-        <!--<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Счет" FontSize="24"/>-->
         <TextBlock Text="{Binding Score}" FontSize="24"/>
 
         <Grid x:Name="gameGrid" Margin="5" Width="250" Height="400" >
@@ -26,7 +24,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Плитки игрового поля -->
-            <ItemsControl ItemsSource="{Binding Tile}">
+            <ItemsControl ItemsSource="{Binding Tiles}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Grid>
@@ -48,7 +46,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border>
-                            <TextBlock Text="{Binding Value}" />
+                            <TextBlock Text="{Binding Tile.Num}" />
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

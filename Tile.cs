@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace WpfApp
 {
-    public class Tile: INotifyPropertyChanged
+    public class Tiles: INotifyPropertyChanged
     {
         private int _num { get; set; }
         private bool _merged { get; set; }
 
-        public Tile (int num, bool merged) 
+        public Tiles (int num, bool merged) 
         {
             _merged = merged;
             _num = num;

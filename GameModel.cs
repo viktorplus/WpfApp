@@ -7,13 +7,13 @@ namespace WpfApp
 {
     public class GameModel : INotifyPropertyChanged
     {
-        private Tile[,] _tile;
+        private Tiles[,] _tile;
         private int _score;
         private bool _isGameOver;
 
         public GameModel()
         {
-            _tile = new Tile[4, 4]; // Инициализируем поле 4x4
+            _tile = new Tiles[4, 4]; // Инициализируем поле 4x4
             _score = 0;
             _isGameOver = false;
 
@@ -21,12 +21,15 @@ namespace WpfApp
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    _tile[i, j] = new Tile(0, false); // Создаем экземпляры Tile для каждой ячейки
+                    _tile[i, j] = new Tiles(0, false); // Создаем экземпляры Tile для каждой ячейки
                 }
             }
+
+            GenerateNewTile(); // Вызываем метод для создания начальных плиток
         }
 
-        public Tile[,] Tile
+
+        public Tiles[,] Tile
         {
             get { return _tile; }
             set
@@ -83,7 +86,7 @@ namespace WpfApp
                 int row = randomCell.Item1;
                 int col = randomCell.Item2;
 
-                Tile[row, col] = new Tile(value, false); // Создаем новую плитку
+                Tile[row, col] = new Tiles(value, false); // Создаем новую плитку
                 OnPropertyChanged(nameof(Tile)); // Вызываем событие PropertyChanged
             }
         }

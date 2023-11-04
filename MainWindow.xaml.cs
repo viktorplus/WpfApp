@@ -20,7 +20,7 @@ namespace WpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public GameModel Game { get; set; }
+        public GameModel Game;
 
         public MainWindow()
         {
