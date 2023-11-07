@@ -26,8 +26,25 @@ namespace WpfApp
             }
 
             GenerateNewTile(); // Вызываем метод для создания начальных плиток
+            GenerateNewTile(); // Вызываем метод для создания начальных плиток
         }
 
+        public Tiles Tile00 => _tile[0, 0];
+        public Tiles Tile01 => _tile[0, 1];
+        public Tiles Tile02 => _tile[0, 2];
+        public Tiles Tile03 => _tile[0, 3];
+        public Tiles Tile10 => _tile[1, 0];
+        public Tiles Tile11 => _tile[1, 1];
+        public Tiles Tile12 => _tile[1, 2];
+        public Tiles Tile13 => _tile[1, 3];
+        public Tiles Tile20 => _tile[2, 0];
+        public Tiles Tile21 => _tile[2, 1];
+        public Tiles Tile22 => _tile[2, 2];
+        public Tiles Tile23 => _tile[2, 3];
+        public Tiles Tile30 => _tile[3, 0];
+        public Tiles Tile31 => _tile[3, 1];
+        public Tiles Tile32 => _tile[3, 2];
+        public Tiles Tile33 => _tile[3, 3];
 
         public Tiles[,] Tile
         {
