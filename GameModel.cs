@@ -28,8 +28,8 @@ namespace WpfApp
                 }
             }
 
-            GenerateNewTile(); // Вызываем метод для создания начальных плиток
-            GenerateNewTile(); // Вызываем метод для создания начальных плиток
+            GenerateNewTiles(2); // Вызываем метод для создания начальных плиток
+
         }
 
         public int Tile00 => _tile[0, 0];
@@ -89,41 +89,64 @@ namespace WpfApp
             }
         }
 
-        public void GenerateNewTile()
+        public void GenerateNewTiles(int count)
         {
-            Tile[0, 2] = 2;
-            Tile[0, 3] = 2;
-            //Random random = new Random();
-            //int value = random.Next(10) == 0 ? 4 : 2; // Вероятность 10% для 4, 90% для 2
+            Random random = new Random();
 
-            //List<Tuple<int, int>> emptyCells = new List<Tuple<int, int>>();
+            int emptyCellCount = 0;
+            // Подсчитываем количество пустых ячеек на поле
+            for (int row = 0; row < 4; row++)
+            {
+                for (int col = 0; col < 4; col++)
+                {
+                    if (Tile[row, col] == 0)
+                    {
+                        emptyCellCount++;
+                    }
+                }
+            }
 
-            //// Находим все пустые ячейки на поле
-            //for (int row = 0; row < 4; row++)
-            //{
-            //    for (int col = 0; col < 4; col++)
-            //    {
-            //        if (Tile[row, col].Num == 0)
-            //        {
-            //            emptyCells.Add(new Tuple<int, int>(row, col));
-            //        }
-            //    }
-            //}
+            // Если количество пустых ячеек недостаточно для добавления count * 2 плиток, устанавливаем _isGameOver в true
+            if (emptyCellCount < count * 2)
+            {
+                IsGameOver = true;
+                return;
+            }
 
-            //// Если есть пустые ячейки, выбираем случайную и добавляем новую плитку
-            //if (emptyCells.Count > 0)
-            //{
-            //    int randomIndex = random.Next(emptyCells.Count);
-            //    Tuple<int, int> randomCell = emptyCells[randomIndex];
+            for (int i = 0; i < count; i++)
+            {
+                int value = random.Next(10) == 0 ? 4 : 2; // Вероятность 10% для 4, 90% для 2
 
-            //    int row = randomCell.Item1;
-            //    int col = randomCell.Item2;
+                List<Tuple<int, int>> emptyCells = new List<Tuple<int, int>>();
 
-            //    Tile[row, col] = new Tiles(value, false); // Создаем новую плитку
-            //    OnPropertyChanged(nameof(Tile)); // Вызываем событие PropertyChanged
-            //}
+                // Находим все пустые ячейки на поле
+                for (int row = 0; row < 4; row++)
+                {
+                    for (int col = 0; col < 4; col++)
+                    {
+                        if (Tile[row, col] == 0)
+                        {
+                            emptyCells.Add(new Tuple<int, int>(row, col));
+                        }
+                    }
+                }
+
+                // Если есть пустые ячейки, выбираем случайную и добавляем новую плитку
+                if (emptyCells.Count > 0)
+                {
+                    int randomIndex = random.Next(emptyCells.Count);
+                    Tuple<int, int> randomCell = emptyCells[randomIndex];
+
+                    int row = randomCell.Item1;
+                    int col = randomCell.Item2;
+
+                    Tile[row, col] = value; // Создаем новую плитку
+                    OnPropertyChanged($"Tile{row}{col}"); // Вызываем событие PropertyChanged
+                }
+            }
         }
-  
+
+
 
         public void MoveLeft()
         {
@@ -141,6 +164,8 @@ namespace WpfApp
                                 // Перемещаем ячейку в пустую ячейку слева
                                 Tile[row, targetCol] = Tile[row, col];
                                 Tile[row, col] = 0;
+                                OnPropertyChanged($"Tile{row}{targetCol}");
+                                OnPropertyChanged($"Tile{row}{col}");
                                 col = targetCol; // Перемещение завершено, обновляем текущую позицию col
                                 HasMoved = true;
                             }
@@ -167,6 +192,9 @@ namespace WpfApp
                         Tile[row, col] *= 2;
                         Score += Tile[row, col];
                         Tile[row, col + 1] = 0;
+                        OnPropertyChanged($"Tile{row}{col}");
+                        OnPropertyChanged($"Tile{row}{col+1}");
+                        OnPropertyChanged(nameof(Score));
                     }
                 }
             }
@@ -184,12 +212,9 @@ namespace WpfApp
 
             if (HasMoved)
             {
-                GenerateNewTile();
+                GenerateNewTiles(2);
             }
             HasMoved = false;
-
-            OnPropertyChanged(nameof(Tile));
-            OnPropertyChanged(nameof(Score));
         }
 
         private void ShowDebugInfo(string message)
@@ -205,81 +230,73 @@ namespace WpfApp
             MessageBox.Show(debugInfo, "Debug Info");
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         public void MoveRight()
         {
-            //bool hasMoved = false;
-
-            //for (int row = 0; row < 4; row++)
-            //{
-            //    int targetCol = 3;
-            //    for (int col = 3; col >= 0; col--)
-            //    {
-            //        if (Tile[row, col].Num != 0)
-            //        {
-            //            if (targetCol == col)
-            //            {
-            //                // Текущая ячейка уже находится в крайней правой позиции,
-            //                // нет необходимости перемещать ее
-            //            }
-            //            else if (Tile[row, targetCol].Num == 0)
-            //            {
-            //                // Ячейка справа пустая, перемещаем текущую ячейку вправо
-            //                Tile[row, targetCol] = Tile[row, col];
-            //                Tile[row, col] = new Tiles(0, false);
-            //                hasMoved = true;
-            //            }
-            //            else if (Tile[row, targetCol].Num == Tile[row, col].Num && !Tile[row, targetCol].Merged && !Tile[row, col].Merged)
-            //            {
-            //                // Обе ячейки имеют одинаковые значения и не были объединены
-            //                // Удваиваем значение ячейки справа и удаляем текущую ячейку
-            //                Tile[row, targetCol].Num *= 2;
-            //                Score += Tile[row, targetCol].Num;
-            //                Tile[row, targetCol].Merged = true;
-
-            //                // Удаляем старую плитку
-            //                Tile[row, col] = new Tiles(0, false);
-
-            //                hasMoved = true;
-            //            }
-            //            else
-            //            {
-            //                // Ячейка справа имеет разное значение или уже объединена,
-            //                // перемещаем текущую ячейку вправо, но на одну позицию левее
-            //                targetCol--;
-            //                Tile[row, targetCol] = Tile[row, col];
-            //                if (col != targetCol)
-            //                    Tile[row, col] = new Tiles(0, false);
-            //                hasMoved = true;
-            //            }
-            //        }
-            //    }
-            //    // Сброс флагов слияния после каждой строки
-            //    for (int col = 3; col >= 0; col--)
-            //    {
-            //        Tile[row, col].Merged = false;
-            //    }
-            //}
-            //if (hasMoved)
-            //{
-            //    GenerateNewTile(); // Вызываем метод для создания начальных плиток
-            //    GenerateNewTile(); // Вызываем метод для создания начальных плиток
-            //}
-            //OnPropertyChanged(nameof(Tile));
-            //OnPropertyChanged(nameof(Score));
+            for (int row = 0; row < 4; row++)
+            {
+                for (int col = 2; col >= 0; col--)
+                {
+                    if (Tile[row, col] != 0)
+                    {
+                        int targetCol = col + 1;
+                        while (targetCol <= 3)
+                        {
+                            if (Tile[row, targetCol] == 0)
+                            {
+                                // Перемещаем ячейку в пустую ячейку справа
+                                Tile[row, targetCol] = Tile[row, col];
+                                Tile[row, col] = 0;
+                                OnPropertyChanged($"Tile{row}{targetCol}");
+                                OnPropertyChanged($"Tile{row}{col}");
+                                col = targetCol; // Перемещение завершено, обновляем текущую позицию col
+                                HasMoved = true;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                            targetCol++;
+                        }
+                    }
+                }
+            }
         }
+
+        public void MergeRight()
+        {
+            for (int row = 0; row < 4; row++)
+            {
+                for (int col = 3; col > 0; col--)
+                {
+                    if (Tile[row, col] != 0 && Tile[row, col] == Tile[row, col - 1])
+                    {
+                        // Объединяем соседние ячейки с одинаковыми значениями
+                        Tile[row, col] *= 2;
+                        Score += Tile[row, col];
+                        Tile[row, col - 1] = 0;
+                        OnPropertyChanged($"Tile{row}{col}");
+                        OnPropertyChanged($"Tile{row}{col - 1}");
+                    }
+                }
+            }
+        }
+
+        public void MoveAndMergeRight()
+        {
+            MoveRight();
+            MergeRight();
+            MoveRight();
+
+            if (HasMoved)
+            {
+                GenerateNewTiles(2); // Добавляем 2 новую плитку после движения
+            }
+            HasMoved = false;
+
+            OnPropertyChanged(nameof(Score));
+            OnPropertyChanged(nameof(IsGameOver));
+        }
+
 
 
         public void MoveUp()
