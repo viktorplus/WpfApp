@@ -28,52 +28,52 @@
 
             <!-- Плитки игрового поля -->
             <Border Grid.Row="0" Grid.Column="0">
-                <TextBlock Text="{Binding Tile00.Num}" />
+                <TextBlock Text="{Binding Tile00}" />
             </Border>
             <Border Grid.Row="0" Grid.Column="1">
-                <TextBlock Text="{Binding Tile01.Num}" />
+                <TextBlock Text="{Binding Tile01}" />
             </Border>
             <Border Grid.Row="0" Grid.Column="2">
-                <TextBlock Text="{Binding Tile02.Num}" />
+                <TextBlock Text="{Binding Tile02}" />
             </Border>
             <Border Grid.Row="0" Grid.Column="3">
-                <TextBlock Text="{Binding Tile03.Num}" />
+                <TextBlock Text="{Binding Tile03}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="0">
-                <TextBlock Text="{Binding Tile10.Num}" />
+                <TextBlock Text="{Binding Tile10}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="1">
-                <TextBlock Text="{Binding Tile11.Num}" />
+                <TextBlock Text="{Binding Tile11}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="2">
-                <TextBlock Text="{Binding Tile12.Num}" />
+                <TextBlock Text="{Binding Tile12}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="3">
-                <TextBlock Text="{Binding Tile13.Num}" />
+                <TextBlock Text="{Binding Tile13}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="0">
-                <TextBlock Text="{Binding Tile20.Num}" />
+                <TextBlock Text="{Binding Tile20}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="1">
-                <TextBlock Text="{Binding Tile21.Num}" />
+                <TextBlock Text="{Binding Tile21}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="2">
-                <TextBlock Text="{Binding Tile22.Num}" />
+                <TextBlock Text="{Binding Tile22}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="3">
-                <TextBlock Text="{Binding Tile23.Num}" />
+                <TextBlock Text="{Binding Tile23}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="0">
-                <TextBlock Text="{Binding Tile30.Num}" />
+                <TextBlock Text="{Binding Tile30}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="1">
-                <TextBlock Text="{Binding Tile31.Num}" />
+                <TextBlock Text="{Binding Tile31}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="2">
-                <TextBlock Text="{Binding Tile32.Num}" />
+                <TextBlock Text="{Binding Tile32}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="3">
-                <TextBlock Text="{Binding Tile33.Num}" />
+                <TextBlock Text="{Binding Tile33}" />
             </Border>
         </Grid>
     </StackPanel>

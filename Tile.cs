@@ -9,8 +9,8 @@ namespace WpfApp
 {
     public class Tiles: INotifyPropertyChanged
     {
-        private int _num { get; set; }
-        private bool _merged { get; set; }
+        public int _num { get; set; }
+        public bool _merged { get; set; }
 
         public Tiles (int num, bool merged) 
         {

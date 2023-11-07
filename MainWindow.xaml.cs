@@ -34,7 +34,7 @@ namespace WpfApp
             base.OnKeyDown(e);
             if (e.Key == Key.Left)
             {
-                Game.MoveLeft();
+                Game.MoveAndMergeLeft();
             }
             if (e.Key == Key.Right)
             {
