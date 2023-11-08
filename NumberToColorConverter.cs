@@ -6,35 +6,70 @@ using System.Windows.Media;
 
 namespace WpfApp
 {
-    public class NumberToColorConverter : IMultiValueConverter
+    public class NumberToColorConverter : IValueConverter
     {
-
-
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            // Проверка наличия нужного числа значений и преобразование их
-            if (values.Length >= 1 && values[0] is int)
+            int number = (int)value;
+
+            if (number == 0)
             {
-                int number = (int)values[0];
-
-                if (number == 0)
-                {
-                    SolidColorBrush background = Brushes.Transparent;
-                    SolidColorBrush foreground = Brushes.White; // Белый цвет текста для 0
-                    return new SolidColorBrushPair(background, foreground);
-                }
-                else
-                {
-                    SolidColorBrush background = Brushes.LightGray; // Цвет фона для других значений
-                    SolidColorBrush foreground = Brushes.Black; // Черный цвет текста для других значений
-                    return new SolidColorBrushPair(background, foreground);
-                }
+                return Brushes.Transparent; // Плитка с нулевым значением
             }
-            // Если параметры не соответствуют ожиданиям, вы можете вернуть, например, значения по умолчанию или обработать ошибку.
-            return new SolidColorBrushPair(Brushes.Transparent, Brushes.Black);
-        }
+            else
+            {
+                // Здесь вы можете установить цвет фона на ваш выбор
+                var background = Brushes.LightGray;
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+                if (number == 2)
+                {
+                    background = Brushes.LightGray;
+                }
+                else if (number == 4)
+                {
+                    background = Brushes.LightBlue;
+                }
+                else if (number == 8)
+                {
+                    background = Brushes.LightGreen;
+                }
+                else if (number == 16)
+                {
+                    background = Brushes.Orange;
+                }
+                else if (number == 32)
+                {
+                    background = Brushes.Yellow;
+                }
+                else if (number == 64)
+                {
+                    background = Brushes.Red;
+                }
+                else if (number == 128)
+                {
+                    background = Brushes.Purple;
+                }
+                else if (number == 256)
+                {
+                    background = Brushes.Pink;
+                }
+                else if (number == 512)
+                {
+                    background = Brushes.Brown;
+                }
+                else if (number == 1024)
+                {
+                    background = Brushes.Magenta;
+                }
+                else if (number == 2048)
+                {
+                    background = Brushes.Cyan;
+                }
+
+                return background;
+            }
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

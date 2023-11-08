@@ -9,27 +9,7 @@
         Title="MainWindow" Height="600" Width="600">
     <Window.Resources>
         <local:NumberToColorConverter x:Key="NumberToColorConverter" />
-        <Style x:Key="TileStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="24" />
-            <Setter Property="Background">
-                <Setter.Value>
-                    <MultiBinding Converter="{StaticResource NumberToColorConverter}">
-                        <Binding Path="." />
-                        <!-- Привязка к текущему объекту (значению плитки) -->
-                    </MultiBinding>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Foreground">
-                <Setter.Value>
-                    <MultiBinding Converter="{StaticResource NumberToColorConverter}">
-                        <Binding Path="." />
-                        <!-- Привязка к текущему объекту (значению плитки) -->
-                    </MultiBinding>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </Window.Resources>
-
     <StackPanel>
         <!--<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Счет" FontSize="24"/>-->
         <TextBlock Text="{Binding Score}" FontSize="24"/>
@@ -51,52 +31,52 @@
 
             <!-- Плитки игрового поля -->
             <Border Grid.Row="0" Grid.Column="0">
-                <TextBlock Text="{Binding Tile00}" Style="{StaticResource TileStyle}" />
+                <TextBlock Text="{Binding Tile00}" Background="{Binding Tile00, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
             <Border Grid.Row="0" Grid.Column="1">
-                <TextBlock Text="{Binding Tile01}" Style="{StaticResource TileStyle}"/>
+                <TextBlock Text="{Binding Tile01}" Background="{Binding Tile01, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
             <Border Grid.Row="0" Grid.Column="2">
-                <TextBlock Text="{Binding Tile02}" Style="{StaticResource TileStyle}"/>
+                <TextBlock Text="{Binding Tile02}" Background="{Binding Tile02, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
             <Border Grid.Row="0" Grid.Column="3">
-                <TextBlock Text="{Binding Tile03}" Style="{StaticResource TileStyle}"/>
+                <TextBlock Text="{Binding Tile03}" Background="{Binding Tile03, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="0">
-                <TextBlock Text="{Binding Tile10}" Style="{StaticResource TileStyle}"/>
+                <TextBlock Text="{Binding Tile10}" Background="{Binding Tile10, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="1">
-                <TextBlock Text="{Binding Tile11}" Style="{StaticResource TileStyle}"/>
+                <TextBlock Text="{Binding Tile11}" Background="{Binding Tile11, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="2">
-                <TextBlock Text="{Binding Tile12}" Style="{StaticResource TileStyle}"/>
+                <TextBlock Text="{Binding Tile12}" Background="{Binding Tile12, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="3">
-                <TextBlock Text="{Binding Tile13}" Style="{StaticResource TileStyle}"/>
+                <TextBlock Text="{Binding Tile13}" Background="{Binding Tile13, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="0">
-                <TextBlock Text="{Binding Tile20}" Style="{StaticResource TileStyle}"/>
+                <TextBlock Text="{Binding Tile20}" Background="{Binding Tile20, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="1">
-                <TextBlock Text="{Binding Tile21}" Style="{StaticResource TileStyle}"/>
+                <TextBlock Text="{Binding Tile21}" Background="{Binding Tile21, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="2">
-                <TextBlock Text="{Binding Tile22}" Style="{StaticResource TileStyle}"/>
+                <TextBlock Text="{Binding Tile22}" Background="{Binding Tile22, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="3">
-                <TextBlock Text="{Binding Tile23}" Style="{StaticResource TileStyle}"/>
+                <TextBlock Text="{Binding Tile23}" Background="{Binding Tile23, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="0">
-                <TextBlock Text="{Binding Tile30}" Style="{StaticResource TileStyle}"/>
+                <TextBlock Text="{Binding Tile30}" Background="{Binding Tile30, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="1">
-                <TextBlock Text="{Binding Tile31}" Style="{StaticResource TileStyle}"/>
+                <TextBlock Text="{Binding Tile31}" Background="{Binding Tile31, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="2">
-                <TextBlock Text="{Binding Tile32}" Style="{StaticResource TileStyle}"/>
+                <TextBlock Text="{Binding Tile32}" Background="{Binding Tile32, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="3">
-                <TextBlock Text="{Binding Tile33}" Style="{StaticResource TileStyle}"/>
+                <TextBlock Text="{Binding Tile33}" Background="{Binding Tile33, Converter={StaticResource NumberToColorConverter}}" />
             </Border>
         </Grid>
     </StackPanel>
