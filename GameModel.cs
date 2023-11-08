@@ -17,7 +17,7 @@ namespace WpfApp
 
         public GameModel()
         {
-            _tile = new int [4, 4]; // Инициализируем поле 4x4
+            _tile = new int[4, 4]; // Инициализируем поле 4x4
             _score = 0;
             _isGameOver = false;
             _hasMoved = false;
@@ -50,7 +50,7 @@ namespace WpfApp
         public int Tile32 => _tile[3, 2];
         public int Tile33 => _tile[3, 3];
 
-        public int [,] Tile
+        public int[,] Tile
         {
             get { return _tile; }
             set
@@ -194,7 +194,7 @@ namespace WpfApp
                         Score += Tile[row, col];
                         Tile[row, col + 1] = 0;
                         OnPropertyChanged($"Tile{row}{col}");
-                        OnPropertyChanged($"Tile{row}{col+1}");
+                        OnPropertyChanged($"Tile{row}{col + 1}");
                         OnPropertyChanged(nameof(Score));
                     }
                 }
@@ -457,3 +457,4 @@ namespace WpfApp
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
+}
