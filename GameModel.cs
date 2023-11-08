@@ -9,7 +9,6 @@ namespace WpfApp
 {
     public class GameModel : INotifyPropertyChanged
     {
-        //private Tiles[,] _tile;
         private int[,] _tile;
         private int _score;
         private bool _isGameOver;
