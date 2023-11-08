@@ -11,24 +11,26 @@ namespace WpfApp
     {
         private int[,] _tile;
         private int _score;
+        private int _topscore;
         private bool _isGameOver;
         private bool _hasMoved;
 
         public GameModel()
         {
-            _tile = new int[4, 4]; // Инициализируем поле 4x4
+            _tile = new int[4, 4];
             _score = 0;
+            _topscore = 0;
             _isGameOver = false;
             _hasMoved = false;
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    _tile[i, j] = 0; // Создаем экземпляры Tile для каждой ячейки
+                    _tile[i, j] = 0;
                 }
             }
 
-            GenerateNewTiles(2); // Вызываем метод для создания начальных плиток
+            GenerateNewTiles(2); 
 
         }
 
@@ -69,6 +71,16 @@ namespace WpfApp
             }
         }
 
+        public int Topscore
+        {
+            get { return _topscore; }
+            set
+            {
+                _score = value;
+                OnPropertyChanged(nameof(Topscore));
+            }
+        }
+
         public bool IsGameOver
         {
             get { return _isGameOver; }
@@ -76,6 +88,11 @@ namespace WpfApp
             {
                 _isGameOver = value;
                 OnPropertyChanged(nameof(IsGameOver));
+
+                if (_isGameOver)
+                {
+                    ShowRestartDialog();
+                }
             }
         }
 
@@ -106,10 +123,14 @@ namespace WpfApp
                 }
             }
 
-            // Если количество пустых ячеек недостаточно для добавления count * 2 плиток, устанавливаем _isGameOver в true
-            if (emptyCellCount < count * 2)
+            // Если количество пустых ячеек недостаточно для добавления count плиток, устанавливаем _isGameOver в true
+            if (emptyCellCount < count)
             {
                 IsGameOver = true;
+
+                if(Score>Topscore) Topscore = Score;
+                OnPropertyChanged(nameof(IsGameOver));
+                OnPropertyChanged(nameof(Topscore));
                 return;
             }
 
@@ -442,11 +463,28 @@ namespace WpfApp
         }
 
 
-
-
-        public void Reset()
+        public void ShowRestartDialog()
         {
-            // Логика для сброса игры, начальное расположение плиток и счета
+            MessageBoxResult result = MessageBox.Show("Сыграть еще раз?", "Вопрос", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                _score = 0;
+                _isGameOver = false;
+                _hasMoved = false;
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        _tile[i, j] = 0;
+                    }
+                }
+
+                GenerateNewTiles(2);
+            }
+            else if (result == MessageBoxResult.No)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

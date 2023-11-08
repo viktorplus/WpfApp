@@ -22,9 +22,25 @@
         </Style>
     </Window.Resources>
     <StackPanel>
-        <TextBlock Text="{Binding Score}" FontSize="24"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
 
-        <Grid x:Name="gameGrid" Margin="5" Width="250" Height="400">
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Score:" FontSize="24" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right"/>
+            <TextBlock Text="{Binding Score}" FontSize="24" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"/>
+            <TextBlock Text="Record:" FontSize="24" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" />
+            <TextBlock Text="{Binding Topscore}" FontSize="24" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center"/>
+        </Grid>
+
+        <Grid x:Name="gameGrid" Margin="5" Width="400" Height="400">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
