@@ -24,7 +24,6 @@ namespace WpfApp.Pages
     /// </summary>
     public partial class MainPage : UserControl
     {
-        Frame MainFrame;
         public MainPage()
         {
             InitializeComponent();

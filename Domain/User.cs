@@ -10,24 +10,24 @@ namespace WpfApp.Domain
     {
         private string _firstname;
         private string _lastname;
-        private string _email;
         private string _username;
         private string _password;
-        private DateTime _dateofbirth;
-        private string _address;
-        private string _phonenumber;
+        private bool _isadmin;
+        private bool _islecture;
+        private bool _isstudent;
+
+
 
 
         public User(string firstName, string lastName, string email, string username, string password, DateTime dateOfBirth, string address, string phoneNumber)
         {
             _firstname = firstName;
             _lastname = lastName;
-            _email = email;
             _username = username;
             _password = HashPassword(password); // Хэшируем пароль при создании
-            _dateofbirth = dateOfBirth;
-            _address = address;
-            _phonenumber = phoneNumber;
+            _isadmin = false;
+            _islecture = false;
+            _isstudent = true;
         }
         public string FirstName
         {
@@ -48,15 +48,6 @@ namespace WpfApp.Domain
             }
         }
 
-        public string Email
-        {
-            get { return _email; }
-            set
-            {
-                _email = value;
-                OnPropertyChanged(nameof(Email));
-            }
-        }
         public string Username
         {
             get { return _username; }
@@ -75,34 +66,7 @@ namespace WpfApp.Domain
                 OnPropertyChanged(nameof(Password));
             }
         }
-        public DateTime Dateofbirth
-        {
-            get { return _dateofbirth; }
-            set
-            {
-                _dateofbirth = value;
-                OnPropertyChanged(nameof(Dateofbirth));
-            }
-        }
-        public string Address
-        {
-            get { return _address; }
-            set
-            {
-                _address = value;
-                OnPropertyChanged(nameof(Address));
-            }
-        }
 
-        public string Phonenumber
-        {
-            get { return _phonenumber; }
-            set
-            {
-                _phonenumber = value;
-                OnPropertyChanged(nameof(Phonenumber));
-            }
-        }
 
         public bool VerifyPassword(string password)
         {
