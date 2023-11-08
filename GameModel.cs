@@ -202,13 +202,13 @@ namespace WpfApp
 
         public void MoveAndMergeLeft()
         {
-            ShowDebugInfo("Before moving left:");
+            //ShowDebugInfo("Before moving left:");
             MoveLeft();
-            ShowDebugInfo("After moving left:");
+            //ShowDebugInfo("After moving left:");
             MergeLeft();
-            ShowDebugInfo("After merging:");
+            //ShowDebugInfo("After merging:");
             MoveLeft();
-            ShowDebugInfo("After moving again:");
+            //ShowDebugInfo("After moving again:");
 
             if (HasMoved)
             {
@@ -217,18 +217,18 @@ namespace WpfApp
             HasMoved = false;
         }
 
-        private void ShowDebugInfo(string message)
-        {
-            string debugInfo = $"{message}\n";
-            for (int row = 0; row < 4; row++)
-            {
-                for (int col = 0; col < 4; col++)
-                {
-                    debugInfo += $"Tile[{row},{col}]: {Tile[row, col]}\n";
-                }
-            }
-            MessageBox.Show(debugInfo, "Debug Info");
-        }
+        //private void ShowDebugInfo(string message)
+        //{
+        //    string debugInfo = $"{message}\n";
+        //    for (int row = 0; row < 4; row++)
+        //    {
+        //        for (int col = 0; col < 4; col++)
+        //        {
+        //            debugInfo += $"Tile[{row},{col}]: {Tile[row, col]}\n";
+        //        }
+        //    }
+        //    MessageBox.Show(debugInfo, "Debug Info");
+        //}
 
         public void MoveRight()
         {
@@ -270,12 +270,13 @@ namespace WpfApp
                 {
                     if (Tile[row, col] != 0 && Tile[row, col] == Tile[row, col - 1])
                     {
-                        // Объединяем соседние ячейки с одинаковыми значениями
+                        // Объединение соседних ячеек с одинаковыми значениями
                         Tile[row, col] *= 2;
                         Score += Tile[row, col];
                         Tile[row, col - 1] = 0;
                         OnPropertyChanged($"Tile{row}{col}");
                         OnPropertyChanged($"Tile{row}{col - 1}");
+                        HasMoved = true; // Есть перемещение после слияния
                     }
                 }
             }
@@ -289,7 +290,7 @@ namespace WpfApp
 
             if (HasMoved)
             {
-                GenerateNewTiles(2); // Добавляем 2 новую плитку после движения
+                GenerateNewTiles(2); // Добавляем одну новую плитку после движения
             }
             HasMoved = false;
 
@@ -299,134 +300,147 @@ namespace WpfApp
 
 
 
+
         public void MoveUp()
         {
-            //bool hasMoved = false;
-
-            //for (int col = 0; col < 4; col++)
-            //{
-            //    int targetRow = 0;
-            //    for (int row = 0; row < 4; row++)
-            //    {
-            //        if (Tile[row, col].Num != 0)
-            //        {
-            //            if (targetRow == row)
-            //            {
-            //                // Текущая ячейка уже находится в верхней позиции,
-            //                // нет необходимости перемещать ее
-            //            }
-            //            else if (Tile[targetRow, col].Num == 0)
-            //            {
-            //                // Ячейка сверху пустая, перемещаем текущую ячейку вверх
-            //                Tile[targetRow, col] = Tile[row, col];
-            //                Tile[row, col] = new Tiles(0, false);
-            //                hasMoved = true;
-            //            }
-            //            else if (Tile[targetRow, col].Num == Tile[row, col].Num && !Tile[targetRow, col].Merged && !Tile[row, col].Merged)
-            //            {
-            //                // Обе ячейки имеют одинаковые значения и не были объединены
-            //                // Удваиваем значение ячейки сверху и удаляем текущую ячейку
-            //                Tile[targetRow, col].Num *= 2;
-            //                Score += Tile[targetRow, col].Num;
-            //                Tile[targetRow, col].Merged = true;
-
-            //                // Удаление (очистка) старой плитки
-            //                Tile[row, col] = new Tiles(0, false);
-            //                hasMoved = true;
-            //            }
-            //            else
-            //            {
-            //                // Ячейка сверху имеет разное значение или уже объединена,
-            //                // перемещаем текущую ячейку вверх, но на одну позицию ниже
-            //                targetRow++;
-            //                Tile[targetRow, col] = Tile[row, col];
-            //                if (row != targetRow)
-            //                    Tile[row, col] = new Tiles(0, false);
-            //                hasMoved = true;
-            //            }
-            //        }
-            //    }
-            //    // Сброс флагов слияния после каждого столбца
-            //    for (int row = 3; row >= 0; row--)
-            //    {
-            //        Tile[row, col].Merged = false;
-            //    }
-            //}
-
-            //if (hasMoved)
-            //{
-            //    GenerateNewTile();
-            //    GenerateNewTile();
-            //}
-
-            //OnPropertyChanged(nameof(Tile));
-            //OnPropertyChanged(nameof(Score));
+            for (int col = 0; col < 4; col++)
+            {
+                for (int row = 1; row < 4; row++)
+                {
+                    if (Tile[row, col] != 0)
+                    {
+                        int targetRow = row - 1;
+                        while (targetRow >= 0)
+                        {
+                            if (Tile[targetRow, col] == 0)
+                            {
+                                // Перемещаем ячейку в пустую ячейку сверху
+                                Tile[targetRow, col] = Tile[row, col];
+                                Tile[row, col] = 0;
+                                OnPropertyChanged($"Tile{targetRow}{col}");
+                                OnPropertyChanged($"Tile{row}{col}");
+                                row = targetRow; // Перемещение завершено, обновляем текущую позицию row
+                                HasMoved = true;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                            targetRow--;
+                        }
+                    }
+                }
+            }
         }
+
+        public void MergeUp()
+        {
+            for (int col = 0; col < 4; col++)
+            {
+                for (int row = 0; row < 3; row++)
+                {
+                    if (Tile[row, col] != 0 && Tile[row, col] == Tile[row + 1, col])
+                    {
+                        // Объединяем соседние ячейки с одинаковыми значениями
+                        Tile[row, col] *= 2;
+                        Score += Tile[row, col];
+                        Tile[row + 1, col] = 0;
+                        OnPropertyChanged($"Tile{row}{col}");
+                        OnPropertyChanged($"Tile{row + 1}{col}");
+                        OnPropertyChanged(nameof(Score));
+                        HasMoved = true;
+                    }
+                }
+            }
+        }
+
+        public void MoveAndMergeUp()
+        {
+            MoveUp();
+            MergeUp();
+            MoveUp();
+
+            if (HasMoved)
+            {
+                GenerateNewTiles(2);
+            }
+            HasMoved = false;
+
+            OnPropertyChanged(nameof(Score));
+            OnPropertyChanged(nameof(IsGameOver));
+        }
+
 
 
         public void MoveDown()
         {
-            //bool hasMoved = false;
-
-            //for (int col = 0; col < 4; col++)
-            //{
-            //    int targetRow = 3;
-            //    for (int row = 3; row >= 0; row--)
-            //    {
-            //        if (Tile[row, col].Num != 0)
-            //        {
-            //            if (targetRow == row)
-            //            {
-            //                // Текущая ячейка уже находится в нижней позиции,
-            //                // нет необходимости перемещать ее
-            //            }
-            //            else if (Tile[targetRow, col].Num == 0)
-            //            {
-            //                // Ячейка снизу пустая, перемещаем текущую ячейку вниз
-            //                Tile[targetRow, col] = Tile[row, col];
-            //                Tile[row, col] = new Tiles(0, false);
-            //                hasMoved = true;
-            //            }
-            //            else if (Tile[targetRow, col].Num == Tile[row, col].Num && !Tile[targetRow, col].Merged && !Tile[row, col].Merged)
-            //            {
-            //                // Обе ячейки имеют одинаковые значения и не были объединены
-            //                // Удваиваем значение ячейки снизу и удаляем текущую ячейку
-            //                Tile[targetRow, col].Num *= 2;
-            //                Score += Tile[targetRow, col].Num;
-            //                Tile[targetRow, col].Merged = true;
-
-            //                // Удаление (очистка) старой плитки
-            //                Tile[row, col] = new Tiles(0, false);
-            //                hasMoved = true;
-            //            }
-            //            else
-            //            {
-            //                // Ячейка снизу имеет разное значение или уже объединена,
-            //                // перемещаем текущую ячейку вниз, но на одну позицию выше
-            //                targetRow--;
-            //                Tile[targetRow, col] = Tile[row, col];
-            //                if (row != targetRow)
-            //                    Tile[row, col] = new Tiles(0, false);
-            //                hasMoved = true;
-            //            }
-            //        }
-            //    }
-            //    // Сброс флагов слияния после каждого столбца
-            //    for (int row = 0; row < 4; row++)
-            //    {
-            //        Tile[row, col].Merged = false;
-            //    }
-            //}
-
-            //if (hasMoved)
-            //{
-            //    GenerateNewTile();
-            //    GenerateNewTile();
-            //}
-
-            //OnPropertyChanged(nameof(Tile));
-            //OnPropertyChanged(nameof(Score));
+            for (int col = 0; col < 4; col++)
+            {
+                for (int row = 2; row >= 0; row--)
+                {
+                    if (Tile[row, col] != 0)
+                    {
+                        int targetRow = row + 1;
+                        while (targetRow <= 3)
+                        {
+                            if (Tile[targetRow, col] == 0)
+                            {
+                                // Перемещаем ячейку в пустую ячейку снизу
+                                Tile[targetRow, col] = Tile[row, col];
+                                Tile[row, col] = 0;
+                                OnPropertyChanged($"Tile{targetRow}{col}");
+                                OnPropertyChanged($"Tile{row}{col}");
+                                row = targetRow; // Перемещение завершено, обновляем текущую позицию row
+                                HasMoved = true;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                            targetRow++;
+                        }
+                    }
+                }
+            }
         }
+
+        public void MergeDown()
+        {
+            for (int col = 0; col < 4; col++)
+            {
+                for (int row = 3; row > 0; row--)
+                {
+                    if (Tile[row, col] != 0 && Tile[row, col] == Tile[row - 1, col])
+                    {
+                        // Объединяем соседние ячейки с одинаковыми значениями
+                        Tile[row, col] *= 2;
+                        Score += Tile[row, col];
+                        Tile[row - 1, col] = 0;
+                        OnPropertyChanged($"Tile{row}{col}");
+                        OnPropertyChanged($"Tile{row - 1}{col}");
+                        OnPropertyChanged(nameof(Score));
+                        HasMoved = true;
+                    }
+                }
+            }
+        }
+
+        public void MoveAndMergeDown()
+        {
+            MoveDown();
+            MergeDown();
+            MoveDown();
+
+            if (HasMoved)
+            {
+                GenerateNewTiles(2);
+            }
+            HasMoved = false;
+
+            OnPropertyChanged(nameof(Score));
+            OnPropertyChanged(nameof(IsGameOver));
+        }
+
 
 
 

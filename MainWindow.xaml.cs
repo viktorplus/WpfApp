@@ -38,15 +38,15 @@ namespace WpfApp
             }
             if (e.Key == Key.Right)
             {
-                Game.MoveRight();
+                Game.MoveAndMergeRight();
             }
             if (e.Key == Key.Down)
             {
-                Game.MoveDown();
+                Game.MoveAndMergeDown();
             }
             if (e.Key == Key.Up)
             {
-                Game.MoveUp();
+                Game.MoveAndMergeUp();
             }
         }
 
