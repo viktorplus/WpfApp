@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using WpfApp;
 using WpfApp.Domain;
 
-namespace WpfApp6.Pages
+namespace WpfApp.Pages
 {
     /// <summary>
     /// Логика взаимодействия для Login.xaml
@@ -32,19 +32,19 @@ namespace WpfApp6.Pages
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            string login = LoginTextBox.Text;
-            string password = PasswordBox.Password;
+            //string login = LoginTextBox.Text;
+            //string password = PasswordBox.Password;
 
-            if (MainWindow.userList.ValidateUser(login, password))
-            {
-                MainWindow.CurrentUser = MainWindow.userList.GetUserByLogin(login);
+            //if (MainWindow.userList.ValidateUser(login, password))
+            //{
+            //    MainWindow.CurrentUser = MainWindow.userList.GetUserByLogin(login);
 
-                MainFrame.Content = new MainGoodsList(MainFrame);
-            }
-            else
-            {
-                MessageBox.Show("Неправильный логин или пароль. Попробуйте еще раз.");
-            }
+            //    MainFrame.Content = new MainGoodsList(MainFrame);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Неправильный логин или пароль. Попробуйте еще раз.");
+            //}
         }
     }
 }

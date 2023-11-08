@@ -15,8 +15,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp.Domain;
 using WpfApp.Navigator;
-using WpfApp.Domain;
-using WpfApp.Navigator;
 using WpfApp.Pages;
 
 namespace WpfApp
@@ -37,7 +35,7 @@ namespace WpfApp
             InitializeComponent();
 
             NavigatorObject.pageSwitcher = this;
-            NavigatorObject.Switch(new Catalog());
+            NavigatorObject.Switch(new Login());
         }
 
         public Action? CloseAction { get; set; }
