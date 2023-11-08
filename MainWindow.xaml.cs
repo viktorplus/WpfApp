@@ -16,7 +16,8 @@ namespace WpfApp
 
             if (UsernameTextBox.Text == "user" && PasswordBox.Password == "password")
             {
-
+                ErrorMessageTextBlock.Text = "Вход успешен";
+                ErrorMessageTextBlock.Visibility = Visibility.Visible;
             }
             else
             {
@@ -33,3 +34,4 @@ namespace WpfApp
         }
     }
 }
+
