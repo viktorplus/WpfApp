@@ -22,12 +22,16 @@ namespace WpfApp.Pages
     /// </summary>
     public partial class Login : UserControl
     {
-        Frame MainFrame;
+        //Frame MainFrame;
+
+        public Login()
+        {
+        }
 
         public Login(Frame mainFrame)
         {
             InitializeComponent();
-            MainFrame = mainFrame;
+            //MainFrame = mainFrame;
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
