@@ -20,7 +20,8 @@ namespace WpfApp.Pages
     /// </summary>
     public partial class MainAdmin : UserControl
     {
-        public MainAdmin(Frame mainFrame)
+        Frame mainFrame;
+        public MainAdmin(Frame mainframe)
         {
             InitializeComponent();
         }

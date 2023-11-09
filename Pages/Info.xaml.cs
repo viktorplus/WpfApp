@@ -7,9 +7,11 @@ namespace WpfApp.Pages
     /// </summary>
     public partial class Info : UserControl
     {
+        Frame MainFrame;
         public Info(Frame mainFrame)
         {
             InitializeComponent();
+            this.MainFrame = mainFrame;
         }
     }
 }

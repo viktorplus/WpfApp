@@ -9,11 +9,10 @@ namespace WpfApp.Pages
     public partial class Login : UserControl
     {
         Frame MainFrame;
-
         public Login(Frame mainFrame)
         {
             InitializeComponent();
-
+            this.MainFrame = mainFrame;
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
