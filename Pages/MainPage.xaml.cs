@@ -21,7 +21,7 @@ namespace WpfApp.Pages
             MainFrame.Content = new Login(MainFrame);
         }
 
-        private void MainPage_Click(object sender, RoutedEventArgs e)
+        private void About_Click(object sender, RoutedEventArgs e)
         {
             if (MainFrame.Content.GetType() != typeof(Info))
             {

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                   xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
               
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
@@ -24,10 +25,16 @@
         <Label Content="Логин:" Grid.Row="1" Grid.Column="1"/>
         <TextBox Name="LoginTextBox" Grid.Row="1" Grid.Column="2" Width="200"/>
 
-        <Label Content="Пароль:" Grid.Row="2" Grid.Column="1"/>
+
+            <Label Content="Пароль:" Grid.Row="2" Grid.Column="1"/>
         <PasswordBox Name="PasswordBox" Grid.Row="2" Grid.Column="2" Width="200"/>
 
-        <Button Content="Войти" Grid.Row="3" Grid.Column="2" Margin="50" Width="100" Click="LoginButton_Click" Background="{DynamicResource MaterialDesignDarkBackground}"/>
-    </Grid>
+            <!--<Button Content="Войти" Grid.Row="3" Grid.Column="2" Margin="50" Width="100" Click="LoginButton_Click" Background="{DynamicResource MaterialDesignDarkBackground}"/>-->
+            <Button
+    Content="Войти" Grid.Row="3" Grid.Column="2" Margin="50" Width="100" Click="LoginButton_Click"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+  Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"
+  ToolTip="Login" />
+        </Grid>
     </StackPanel>
 </UserControl>

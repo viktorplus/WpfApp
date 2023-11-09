@@ -4,36 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
-    <StackPanel Orientation="Vertical" Height="400">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="200"/>
-            </Grid.ColumnDefinitions>
-
-            <!-- Заголовок института -->
-            <TextBlock Text="Добро пожаловать в Институт знаний" Grid.Row="0" Grid.ColumnSpan="3" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <StackPanel.Background>
+            <SolidColorBrush />
+        </StackPanel.Background>
+        <!-- Заголовок института -->
+            <TextBlock Text="Добро пожаловать" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
 
             <!-- Информация о факультете №1 -->
-            <TextBlock Text="Факультет информационных технологий" Grid.Row="1" Grid.Column="0" FontSize="18" FontWeight="Bold"/>
-            <TextBlock Text="Программы обучения: информационные технологии, программирование, информационная безопасность." Grid.Row="1" Grid.Column="2"/>
+        <TextBlock Text="Факультет информационных технологий"  FontSize="18" FontWeight="Bold" Margin="10"/>
+        <TextBlock Text="Программы обучения: информационные технологии, программирование, информационная безопасность."  Margin="10"/>
 
             <!-- Информация о факультете №2 -->
-            <TextBlock Text="Факультет естественных наук" Grid.Row="2" Grid.Column="0" FontSize="18" FontWeight="Bold"/>
-            <TextBlock Text="Программы обучения: физика, химия, биология, математика." Grid.Row="2" Grid.Column="2"/>
+        <TextBlock Text="Факультет естественных наук"  FontSize="18" FontWeight="Bold" Margin="10"/>
+        <TextBlock Text="Программы обучения: физика, химия, биология, математика."  Margin="10"/>
 
             <!-- Информация о факультете №3 -->
-            <TextBlock Text="Факультет искусств и гуманитарных наук" Grid.Row="3" Grid.Column="0" FontSize="18" FontWeight="Bold"/>
-            <TextBlock Text="Программы обучения: искусство, литература, история, философия." Grid.Row="3" Grid.Column="2"/>
-        </Grid>
+        <TextBlock Text="Факультет искусств и гуманитарных наук"  FontSize="18" FontWeight="Bold" Margin="10"/>
+        <TextBlock Text="Программы обучения: искусство, литература, история, философия."  Margin="10"/>
+       
     </StackPanel>
 </UserControl>

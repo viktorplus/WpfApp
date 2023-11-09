@@ -9,7 +9,7 @@
              d:DesignHeight="1000" d:DesignWidth="1200" Cursor="Hand" >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="27*"/>
+            <RowDefinition Height="25*"/>
             <RowDefinition Height="133*"/>
         </Grid.RowDefinitions>
         <Image Source="/WpfApp;component/Assets/back.jpg" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,-75,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
@@ -30,8 +30,8 @@
             <Button
                 Width="100"
                 Height="35"
-                Content="MyPage"
-                Click="MainPage_Click"
+                Content="About"
+                Click="About_Click"
                 materialDesign:ButtonAssist.CornerRadius="10"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
@@ -58,7 +58,7 @@
                 Background="GhostWhite"
                 BorderThickness="2" Grid.Row="1" 
                 Padding="8">
-            <Frame Name="MainFrame" NavigationUIVisibility="Hidden"/>
+            <Frame Name="MainFrame" NavigationUIVisibility="Hidden"  />
         </Border>
     </Grid>
 </UserControl>

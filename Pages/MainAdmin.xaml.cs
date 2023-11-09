@@ -1,29 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfApp.Pages
 {
     /// <summary>
     /// Логика взаимодействия для MainAdmin.xaml
     /// </summary>
-    public partial class MainAdmin : UserControl
+    public partial class MainAdmin
     {
-        Frame mainFrame;
-        public MainAdmin(Frame mainframe)
+        Frame MainFrame;
+        public MainAdmin(Frame MainFrame)
         {
             InitializeComponent();
+            this.MainFrame = MainFrame;
         }
     }
 }
