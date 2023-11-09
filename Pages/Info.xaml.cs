@@ -3,11 +3,11 @@
 namespace WpfApp.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainStudent.xaml
+    /// Логика взаимодействия для Info.xaml
     /// </summary>
-    public partial class MainStudent : Page
+    public partial class Info : UserControl
     {
-        public MainStudent()
+        public Info(Frame mainFrame)
         {
             InitializeComponent();
         }

@@ -8,29 +8,29 @@ namespace WpfApp.Pages
     /// </summary>
     public partial class Login : UserControl
     {
-        //Frame MainFrame;
+        Frame MainFrame;
 
         public Login(Frame mainFrame)
         {
             InitializeComponent();
-            //MainFrame = mainFrame;
+
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            //string login = LoginTextBox.Text;
-            //string password = PasswordBox.Password;
+            string login = LoginTextBox.Text;
+            string password = PasswordBox.Password;
 
-            //if (MainWindow.userList.ValidateUser(login, password))
-            //{
-            //    MainWindow.CurrentUser = MainWindow.userList.GetUserByLogin(login);
+            if (MainPage.userList.ValidateUser(login, password))
+            {
+                MainPage.CurrentUser = MainPage.userList.GetUserByLogin(login);
 
-            //    MainFrame.Content = new MainGoodsList(MainFrame);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Неправильный логин или пароль. Попробуйте еще раз.");
-            //}
+                MainFrame.Content = new MainAdmin(MainFrame);
+            }
+            else
+            {
+                MessageBox.Show("Неправильный логин или пароль. Попробуйте еще раз.");
+            }
         }
     }
 }

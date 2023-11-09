@@ -18,9 +18,9 @@ namespace WpfApp.Pages
     /// <summary>
     /// Логика взаимодействия для MainAdmin.xaml
     /// </summary>
-    public partial class MainAdmin : Page
+    public partial class MainAdmin : UserControl
     {
-        public MainAdmin()
+        public MainAdmin(Frame mainFrame)
         {
             InitializeComponent();
         }
