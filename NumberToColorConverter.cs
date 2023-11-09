@@ -18,7 +18,6 @@ namespace WpfApp
             }
             else
             {
-                // Здесь вы можете установить цвет фона на ваш выбор
                 var background = Brushes.LightGray;
 
                 if (number == 2)
