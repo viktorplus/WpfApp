@@ -19,10 +19,5 @@ namespace WpfApp.Pages
         {
             MainFrame = mainFrame;
         }
-
-        public void UtilizeState(object state)
-        {
-            // Обработка состояния, если необходимо
-        }
     }
 }

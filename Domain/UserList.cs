@@ -13,6 +13,7 @@ namespace WpfApp.Domain
         public UserList()
         {
             users = new List<User>();
+
         }
 
         public bool ValidateUser(string login, string password)
@@ -21,10 +22,10 @@ namespace WpfApp.Domain
             {
                 if (user.Username == login && user.VerifyPassword(password))
                 {
-                    return true; // Пользователь найден и пароль верен
+                    return true;
                 }
             }
-            return false; // Пользователь не найден или пароль неверен
+            return false; 
         }
 
         public User GetUserByLogin(string login)
