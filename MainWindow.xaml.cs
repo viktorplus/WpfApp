@@ -24,7 +24,7 @@ namespace WpfApp
             InitializeComponent();
 
             NavigatorObject.pageSwitcher = this;
-            NavigatorObject.Switch(new Login());
+            NavigatorObject.Switch(new MainPage());
         }
 
         //public Action? CloseAction { get; set; }
