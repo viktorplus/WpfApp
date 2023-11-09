@@ -9,15 +9,21 @@ namespace WpfApp.Pages
     /// </summary>
     public partial class MainAdmin : UserControl
     {
-        Frame MainFrame;
         public MainAdmin()
         {
             InitializeComponent();
         }
-
-        public MainAdmin(Frame mainFrame)
+           private void AdminInfo_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame = mainFrame;
+
+        }
+
+        private void AdminUserList_Click(object sender, RoutedEventArgs e)
+        {
+            if (AdminFrame.Content.GetType() != typeof(Info))
+            {
+                AdminFrame.Content = new Info(AdminFrame);
+            }
         }
     }
 }

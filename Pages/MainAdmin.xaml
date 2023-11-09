@@ -58,7 +58,7 @@
                 Background="GhostWhite"
                 BorderThickness="2" Grid.Row="1" 
                 Padding="8">
-            <Frame Name="MainFrame" NavigationUIVisibility="Hidden"  />
+            <Frame Name="AdminFrame" NavigationUIVisibility="Hidden"  />
         </Border>
     </Grid>
 </UserControl>
