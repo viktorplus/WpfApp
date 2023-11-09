@@ -17,10 +17,7 @@ namespace WpfApp
 
         public MainWindow()
         {
-
-            //userList = new UserList();
-      
-
+  
             InitializeComponent();
 
             NavigatorObject.pageSwitcher = this;

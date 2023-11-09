@@ -1,18 +1,28 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using WpfApp.Navigator;
 
 namespace WpfApp.Pages
 {
     /// <summary>
     /// Логика взаимодействия для MainAdmin.xaml
     /// </summary>
-    public partial class MainAdmin
+    public partial class MainAdmin : UserControl
     {
         Frame MainFrame;
-        public MainAdmin(Frame MainFrame)
+        public MainAdmin()
         {
             InitializeComponent();
-            this.MainFrame = MainFrame;
+        }
+
+        public MainAdmin(Frame mainFrame)
+        {
+            MainFrame = mainFrame;
+        }
+
+        public void UtilizeState(object state)
+        {
+            // Обработка состояния, если необходимо
         }
     }
 }
