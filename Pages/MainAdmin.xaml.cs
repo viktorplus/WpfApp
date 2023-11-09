@@ -12,18 +12,17 @@ namespace WpfApp.Pages
         public MainAdmin()
         {
             InitializeComponent();
-        }
-           private void AdminInfo_Click(object sender, RoutedEventArgs e)
-        {
-
+            //AdminFrame.Content = new AdminUserList(AdminFrame);
         }
 
         private void AdminUserList_Click(object sender, RoutedEventArgs e)
         {
-            if (AdminFrame.Content.GetType() != typeof(Info))
-            {
-                AdminFrame.Content = new Info(AdminFrame);
-            }
+
+        }
+
+        private void AdminInfo_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

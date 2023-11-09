@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using WpfApp.Domain;
 using WpfApp.Navigator;
 
 namespace WpfApp.Pages
 {
     public partial class Login : UserControl
     {
+        public static UserList userList;
+        public static User CurrentUser { get; set; }
         Frame MainFrame;
         public Login(Frame MainFrame)
         {
@@ -16,17 +19,14 @@ namespace WpfApp.Pages
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            string login = LoginTextBox.Text;
-            string password = PasswordBox.Password;
+            //string login = LoginTextBox.Text;
+            //string password = PasswordBox.Password;
 
-            //if (MainPage.userList.ValidateUser(login, password))
+            //if (userList.ValidateUser(login, password))
             //{
-                //MainPage.CurrentUser = MainPage.userList.GetUserByLogin(login);
+            //    CurrentUser = userList.GetUserByLogin(login);
 
-                //MainFrame.Content = new MainAdmin(MainFrame);
-                NavigatorObject.Switch(new MainAdmin());
-
-
+            NavigatorObject.Switch(new MainAdmin());
             //}
             //else
             //{

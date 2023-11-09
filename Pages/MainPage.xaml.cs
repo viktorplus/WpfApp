@@ -10,8 +10,6 @@ namespace WpfApp.Pages
     /// </summary>
     public partial class MainPage : UserControl
     {
-        public static UserList userList;
-        public static User CurrentUser { get; set; }
 
         public MainPage()
         {
