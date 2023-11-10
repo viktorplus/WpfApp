@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using WpfApp.Domain;
 using WpfApp.Navigator;
 using WpfApp.Pages;
 
@@ -12,8 +13,10 @@ namespace WpfApp
     public partial class MainWindow : Window
 
     {
-        //public static UserList userList;
-        //public static User CurrentUser { get; set; }
+
+        public static User? CurrentUser { get; set; }
+        public static UserList UserList { get; } = new UserList();
+
 
         public MainWindow()
         {

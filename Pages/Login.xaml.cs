@@ -8,32 +8,43 @@ namespace WpfApp.Pages
 {
     public partial class Login : UserControl
     {
-        public static UserList userList;
-        public static User CurrentUser { get; set; }
+        private Frame mainFrame;
+        private UserList userList;
 
-        public Login(Frame MainFrame)
+        public Login(Frame mainFrame)
         {
             InitializeComponent();
-
+            this.mainFrame = mainFrame;
+            this.userList = userList;
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            //string login = LoginTextBox.Text;
-            //string password = PasswordBox.Password;
+            string login = LoginTextBox.Text;
+            string password = PasswordBox.Password;
 
-            //if (userList.ValidateUser(login, password))
-            //{
-            //    CurrentUser = userList.GetUserByLogin(login);
+            if (userList.ValidateUser(login, password))
+            {
+                MainWindow.CurrentUser = MainWindow.UserList.GetUserByLogin(login);
 
-            NavigatorObject.Switch(new MainAdmin());
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Неправильный логин или пароль. Попробуйте еще раз.");
-            //}
+                if (MainWindow.CurrentUser.Roles.Contains(User.UserRole.Admin))
+                {
+                    NavigatorObject.Switch(new MainAdmin());
+                }
+                //else if (currentUser.Roles.Contains(User.UserRole.Student))
+                //{
+                //    NavigatorObject.Switch(new MainStudent(currentUser));
+                //}
+                //else if (currentUser.Roles.Contains(User.UserRole.Lecturer))
+                //{
+                //    NavigatorObject.Switch(new MainLecture(currentUser));
+                //}
+                // Другие варианты для других ролей
+            }
+            else
+            {
+                MessageBox.Show("Неправильный логин или пароль. Попробуйте еще раз.");
+            }
         }
-
-
     }
 }

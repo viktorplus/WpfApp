@@ -10,12 +10,14 @@ namespace WpfApp.Pages
     /// </summary>
     public partial class MainPage : UserControl
     {
+        //private Frame mainFrame;
+
 
         public MainPage()
         {
-
             InitializeComponent();
 
+            //MainFrame.Content = new Login(MainFrame);
             MainFrame.Content = new Login(MainFrame);
         }
 
