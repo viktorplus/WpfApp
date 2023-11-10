@@ -10,7 +10,6 @@ namespace WpfApp.Pages
     public partial class AdminUserList : UserControl
     {
         private ObservableCollection<User> userList;
-        private List<User> allUsers;
         private List<UserRole> allRoles;
         private int pageSize = 10;
 
@@ -29,13 +28,11 @@ namespace WpfApp.Pages
         {
             InitializeComponent();
             userList = new ObservableCollection<User>();
-            allUsers = new UserList().AllUsers;
-            allRoles = new UserList().AllRoles;
+            allRoles = MainWindow.UserList.AllRoles;  // Используем список из MainWindow
             SelectedRole = UserRole.Student;
             UsersListView.ItemsSource = userList;
             RoleComboBox.ItemsSource = allRoles;
             DataContext = this;
-
         }
 
         private void LoadUsers(int startIndex)
@@ -43,7 +40,9 @@ namespace WpfApp.Pages
             userList.Clear();
             int endIndex = startIndex + pageSize;
 
-            var usersToDisplay = allUsers.Where(user => user.Roles.Contains(SelectedRole)).ToList();
+            var usersToDisplay = MainWindow.UserList.AllUsers
+                .Where(user => user.Roles.Contains(SelectedRole))
+                .ToList();
 
             for (int i = startIndex; i < endIndex && i < usersToDisplay.Count; i++)
             {
