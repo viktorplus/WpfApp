@@ -28,11 +28,14 @@ namespace WpfApp.Pages
         {
             InitializeComponent();
             userList = new ObservableCollection<User>();
-            allRoles = MainWindow.UserList.AllRoles;  // Используем список из MainWindow
+            allRoles = MainWindow.UserList.AllRoles;
             SelectedRole = UserRole.Student;
             UsersListView.ItemsSource = userList;
             RoleComboBox.ItemsSource = allRoles;
             DataContext = this;
+
+            // Добавляем обработчик события для сортировки по заголовку колонки
+            AddGridViewColumnHeaderClickEvent();
         }
 
         private void LoadUsers(int startIndex)
@@ -65,6 +68,34 @@ namespace WpfApp.Pages
         private void RoleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedRole = (UserRole)RoleComboBox.SelectedItem;
+        }
+
+        private void AddGridViewColumnHeaderClickEvent()
+        {
+            foreach (var column in ((GridView)UsersListView.View).Columns)
+            {
+                var columnHeader = column.Header as GridViewColumnHeader;
+                if (columnHeader != null)
+                {
+                    columnHeader.Click += GridViewColumnHeader_Click;
+                }
+            }
+        }
+
+        private void GridViewColumnHeader_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            GridViewColumnHeader column = (GridViewColumnHeader)e.OriginalSource;
+            string columnName = column.Content.ToString();
+
+            // Добавьте код сортировки по выбранной колонке
+            // Например, используйте LINQ для сортировки userList
+        }
+
+        private void UsersListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Обработка изменений в выделении списка
+            // Добавьте код для показа кнопок удаления, изменения и добавления
+            // на основе выбранной строки
         }
     }
 }
