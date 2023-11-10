@@ -19,16 +19,22 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <!-- Панель для ComboBox и подписи -->
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <!-- Подпись для ComboBox -->
+            <TextBlock Text="Выбор типа пользователя" VerticalAlignment="Center" Margin="0,0,5,0"/>
 
-        <ComboBox x:Name="RoleComboBox"
-          ItemsSource="{Binding AllRoles}"
-          SelectedItem="{Binding SelectedRole, Mode=TwoWay}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}" />
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+            <!-- ComboBox для выбора роли пользователя -->
+            <ComboBox x:Name="RoleComboBox"
+            ItemsSource="{Binding AllRoles}"
+            SelectedItem="{Binding SelectedRole, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
 
         <ListView x:Name="UsersListView" Grid.Row="1" ItemsSource="{Binding Users}">
             <ListView.View>
