@@ -12,12 +12,12 @@ namespace WpfApp.Pages
         public MainAdmin()
         {
             InitializeComponent();
-            //AdminFrame.Content = new AdminUserList(AdminFrame);
+            AdminFrame.Content = new AdminUserList();
         }
 
         private void AdminUserList_Click(object sender, RoutedEventArgs e)
         {
-
+            AdminFrame.Content = new AdminUserList();
         }
 
         private void AdminInfo_Click(object sender, RoutedEventArgs e)

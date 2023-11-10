@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using BCrypt.Net;
 
@@ -12,22 +13,24 @@ namespace WpfApp.Domain
         private string _lastname;
         private string _username;
         private string _password;
-        private bool _isadmin;
-        private bool _islecture;
-        private bool _isstudent;
+        private List<UserRole> _roles;
+
+        public enum UserRole
+        {
+            Admin,
+            Lecturer,
+            Student
+        }
 
 
-
-
-        public User(string firstName, string lastName, string email, string username, string password, DateTime dateOfBirth, string address, string phoneNumber)
+        public User(string firstName, string lastName, string username, string password, List<UserRole> roles)
         {
             _firstname = firstName;
             _lastname = lastName;
             _username = username;
             _password = HashPassword(password); // Хэшируем пароль при создании
-            _isadmin = false;
-            _islecture = false;
-            _isstudent = true;
+            _roles = roles;
+
         }
         public string FirstName
         {
@@ -67,6 +70,24 @@ namespace WpfApp.Domain
             }
         }
 
+        public List<UserRole> Roles
+        {
+            get { return _roles; }
+            set
+            {
+                _roles = value;
+                OnPropertyChanged(nameof(Roles));
+            }
+        }
+
+        public void AddRole(UserRole role)
+        {
+            if (!_roles.Contains(role))
+            {
+                _roles.Add(role);
+                OnPropertyChanged(nameof(Roles));
+            }
+        }
 
         public bool VerifyPassword(string password)
         {

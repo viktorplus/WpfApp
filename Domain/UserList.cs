@@ -1,19 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using BCrypt.Net;
+using static WpfApp.Domain.User;
 
 namespace WpfApp.Domain
 {
-    public class UserList
+    public class UserList : INotifyPropertyChanged
     {
         private List<User> users;
+        private List<UserRole> allRoles;
 
         public UserList()
         {
             users = new List<User>();
+            allRoles = new List<UserRole>();
+            GenerateUsers();
+        }
 
+        public List<UserRole> AllRoles
+        {
+            get { return allRoles; }
+        }
+
+        public List<User> AllUsers
+        {
+            get { return users; }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void GenerateUsers()
+        {
+            Random random = new Random();
+
+            for (int i = 1; i <= 20; i++)
+            {
+                string firstName = "StudentFirstName" + i;
+                string lastName = "StudentLastName" + i;
+                string username = "student" + i;
+                string password = "password" + i;
+
+                List<UserRole> roles = new List<UserRole> { UserRole.Student };
+                User student = new User(firstName, lastName, username, password, roles);
+                AddUser(student);
+            }
+
+            for (int i = 1; i <= 3; i++)
+            {
+                string firstName = "TeacherFirstName" + i;
+                string lastName = "TeacherLastName" + i;
+                string username = "teacher" + i;
+                string password = "password" + i;
+
+                List<UserRole> roles = new List<UserRole> { UserRole.Lecturer };
+                User teacher = new User(firstName, lastName, username, password, roles);
+                AddUser(teacher);
+            }
         }
 
         public bool ValidateUser(string login, string password)
@@ -25,7 +68,7 @@ namespace WpfApp.Domain
                     return true;
                 }
             }
-            return false; 
+            return false;
         }
 
         public User GetUserByLogin(string login)
@@ -36,16 +79,42 @@ namespace WpfApp.Domain
         public void AddUser(User user)
         {
             users.Add(user);
+            user.PropertyChanged += User_PropertyChanged;
+
+            // Добавляем роли пользователя
+            foreach (UserRole role in user.Roles)
+            {
+                AddRole(role);
+            }
+
+            OnPropertyChanged(nameof(AllUsers));
         }
 
         public void RemoveUser(User user)
         {
             users.Remove(user);
+            user.PropertyChanged -= User_PropertyChanged;
+
+            OnPropertyChanged(nameof(AllUsers));
         }
 
-        public List<User> GetAllUsers()
+        private void AddRole(UserRole role)
         {
-            return users;
+            if (!allRoles.Contains(role))
+            {
+                allRoles.Add(role);
+                OnPropertyChanged(nameof(AllRoles));
+            }
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void User_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(AllUsers));
         }
     }
 }
