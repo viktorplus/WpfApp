@@ -10,7 +10,7 @@ namespace WpfApp.Pages
     {
         public static UserList userList;
         public static User CurrentUser { get; set; }
-        Frame MainFrame;
+
         public Login(Frame MainFrame)
         {
             InitializeComponent();

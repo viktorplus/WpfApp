@@ -19,12 +19,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <!-- Панель для ComboBox и подписи -->
-        <StackPanel Orientation="Horizontal" Margin="5">
-            <!-- Подпись для ComboBox -->
-            <TextBlock Text="Выбор типа пользователя" VerticalAlignment="Center" Margin="0,0,5,0"/>
 
-            <!-- ComboBox для выбора роли пользователя -->
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBlock Text="Выбор типа пользователя" VerticalAlignment="Center" Margin="0,0,5,0"/>
             <ComboBox x:Name="RoleComboBox"
             ItemsSource="{Binding AllRoles}"
             SelectedItem="{Binding SelectedRole, Mode=TwoWay}">
