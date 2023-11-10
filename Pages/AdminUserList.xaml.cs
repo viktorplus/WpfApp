@@ -34,8 +34,11 @@ namespace WpfApp.Pages
             SelectedRole = UserRole.Student;
             UsersListView.ItemsSource = userList;
 
-            // Используем ComboBoxItem для явного указания содержимого в ComboBox
-            RoleComboBox.ItemsSource = allRoles.Select(role => new ComboBoxItem { Content = role }).ToList();
+            // Используем ItemTemplate для отображения содержимого в ComboBox
+            RoleComboBox.ItemsSource = allRoles;
+            RoleComboBox.SelectedItem = SelectedRole;
+            DataContext = this;
+
         }
 
         private void LoadUsers(int startIndex)
@@ -65,11 +68,8 @@ namespace WpfApp.Pages
 
         private void RoleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Проверяем, что выбрано не null и извлекаем Content
-            if (RoleComboBox.SelectedItem is ComboBoxItem selectedItem && selectedItem.Content is User.UserRole selectedRole)
-            {
-                SelectedRole = selectedRole;
-            }
+            // Обновляем выбранную роль
+            SelectedRole = (UserRole)RoleComboBox.SelectedItem;
         }
     }
 }
