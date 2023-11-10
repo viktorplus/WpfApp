@@ -7,36 +7,35 @@
 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-
     <UserControl.Resources>
         <local:RoleVisibilityConverter x:Key="RoleVisibilityConverter" />
     </UserControl.Resources>
 
     <Grid>
-        <ListView x:Name="UsersListView" ItemsSource="{Binding Users}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Новый ComboBox для выбора роли -->
+        <ComboBox x:Name="RoleComboBox" ItemsSource="{Binding AllRoles, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                  SelectedItem="{Binding SelectedRole, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                  DisplayMemberPath="ToString" />
+
+        <ListView x:Name="UsersListView" Grid.Row="1" ItemsSource="{Binding Users}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Имя" Width="100" DisplayMemberBinding="{Binding FirstName}" />
                     <GridViewColumn Header="Фамилия" Width="100" DisplayMemberBinding="{Binding LastName}" />
                     <GridViewColumn Header="Логин" Width="100" DisplayMemberBinding="{Binding Username}" />
-                    <GridViewColumn Header="Роли" Width="200">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <ItemsControl ItemsSource="{Binding Roles}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding}" />
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="4">
             <Button Content="Предыдущие 10" Click="PreviousPageButton_Click"/>
             <Button Content="Следующие 10" Click="NextPageButton_Click"/>
         </StackPanel>

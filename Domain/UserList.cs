@@ -15,6 +15,10 @@ namespace WpfApp.Domain
         {
             users = new List<User>();
             allRoles = new List<UserRole>();
+
+            // Инициализируем allRoles со всеми значениями перечисления UserRole
+            allRoles.AddRange((UserRole[])Enum.GetValues(typeof(UserRole)));
+
             GenerateUsers();
         }
 
@@ -81,12 +85,6 @@ namespace WpfApp.Domain
             users.Add(user);
             user.PropertyChanged += User_PropertyChanged;
 
-            // Добавляем роли пользователя
-            foreach (UserRole role in user.Roles)
-            {
-                AddRole(role);
-            }
-
             OnPropertyChanged(nameof(AllUsers));
         }
 
@@ -96,15 +94,6 @@ namespace WpfApp.Domain
             user.PropertyChanged -= User_PropertyChanged;
 
             OnPropertyChanged(nameof(AllUsers));
-        }
-
-        private void AddRole(UserRole role)
-        {
-            if (!allRoles.Contains(role))
-            {
-                allRoles.Add(role);
-                OnPropertyChanged(nameof(AllRoles));
-            }
         }
 
         private void OnPropertyChanged(string propertyName)

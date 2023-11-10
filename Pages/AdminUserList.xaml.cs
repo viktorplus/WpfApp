@@ -1,53 +1,64 @@
 ﻿using System.Collections.Generic;
-using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Controls;
-using System.Windows;
 using WpfApp.Domain;
+using static WpfApp.Domain.User;
 
 namespace WpfApp.Pages
 {
     public partial class AdminUserList : UserControl
     {
         private ObservableCollection<User> userList;
-        private List<User> allUsers; // Предположим, что у вас есть экземпляр класса UserList
-        private int pageSize = 10; // Количество отображаемых элементов на странице
+        private List<User> allUsers;
+        private List<UserRole> allRoles;
+        private int pageSize = 10;
+
+        private UserRole selectedRole;
+        public UserRole SelectedRole
+        {
+            get { return selectedRole; }
+            set
+            {
+                selectedRole = value;
+                LoadUsers(0);
+            }
+        }
 
         public AdminUserList()
         {
             InitializeComponent();
             userList = new ObservableCollection<User>();
-            allUsers = new UserList().AllUsers; // Получаем всех пользователей из UserList
-
-            // Загрузка первых пользователей (замените на свою логику)
-            LoadUsers(0);
+            allUsers = new UserList().AllUsers;
+            allRoles = new UserList().AllRoles;
+            SelectedRole = allRoles.FirstOrDefault();
             UsersListView.ItemsSource = userList;
+            RoleComboBox.ItemsSource = allRoles;
         }
 
         private void LoadUsers(int startIndex)
         {
-            userList.Clear(); // Очищаем предыдущие записи
-
-            // Логика загрузки пользователей (замените на свою логику)
+            userList.Clear();
             int endIndex = startIndex + pageSize;
 
-            for (int i = startIndex; i < endIndex && i < allUsers.Count; i++)
+            var usersToDisplay = allUsers.Where(user => user.Roles.Contains(SelectedRole)).ToList();
+
+            for (int i = startIndex; i < endIndex && i < usersToDisplay.Count; i++)
             {
-                userList.Add(allUsers[i]);
+                userList.Add(usersToDisplay[i]);
             }
         }
 
-        private void NextPageButton_Click(object sender, RoutedEventArgs e)
+        private void NextPageButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             int startIndex = userList.Count;
             LoadUsers(startIndex);
         }
 
-        private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
+        private void PreviousPageButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            int startIndex = Math.Max(userList.Count - pageSize * 2, 0);
+            int startIndex = System.Math.Max(userList.Count - pageSize * 2, 0);
             LoadUsers(startIndex);
         }
-
     }
 }
