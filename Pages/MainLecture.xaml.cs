@@ -21,14 +21,9 @@ namespace WpfApp.Pages
     /// </summary>
     public partial class MainLecture
     {
-
-        private UserList userList;
-        private User currentUser;
-        public MainLecture(User currentUser)
+        public MainLecture()
         {
             InitializeComponent();
-            this.userList = userList;
-            this.currentUser = currentUser;
             //LectureFrame.Content = new AdminUserList(userList, currentUser);
         }
     }

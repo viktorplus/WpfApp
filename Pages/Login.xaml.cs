@@ -25,9 +25,9 @@ namespace WpfApp.Pages
 
             if (MainWindow.UserList.ValidateUser(login, password))
             {
-                MessageBox.Show("Авторизован");
+
                 MainWindow.CurrentUser = MainWindow.UserList.GetUserByLogin(login);
-                MessageBox.Show("Присвоен CurrentUser");
+
                 if (MainWindow.CurrentUser.Roles.Contains(User.UserRole.Admin))
                 {
                     MessageBox.Show("Определена роль");
