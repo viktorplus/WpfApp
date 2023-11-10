@@ -61,6 +61,19 @@ namespace WpfApp.Domain
                 User teacher = new User(firstName, lastName, username, password, roles);
                 AddUser(teacher);
             }
+
+            for (int i = 1; i <= 1; i++)
+            {
+                string firstName = "AdminFirstName" + i;
+                string lastName = "AdminLastName" + i;
+                string username = "ad" + i;
+                string password = "ad" + i;
+
+                List<UserRole> roles = new List<UserRole> { UserRole.Admin };
+                User teacher = new User(firstName, lastName, username, password, roles);
+                AddUser(teacher);
+            }
+
         }
 
         public bool ValidateUser(string login, string password)

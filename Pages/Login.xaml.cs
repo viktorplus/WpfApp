@@ -9,13 +9,13 @@ namespace WpfApp.Pages
     public partial class Login : UserControl
     {
         private Frame mainFrame;
-        private UserList userList;
+
 
         public Login(Frame mainFrame)
         {
             InitializeComponent();
             this.mainFrame = mainFrame;
-            this.userList = userList;
+
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -23,12 +23,14 @@ namespace WpfApp.Pages
             string login = LoginTextBox.Text;
             string password = PasswordBox.Password;
 
-            if (userList.ValidateUser(login, password))
+            if (MainWindow.UserList.ValidateUser(login, password))
             {
+                MessageBox.Show("Авторизован");
                 MainWindow.CurrentUser = MainWindow.UserList.GetUserByLogin(login);
-
+                MessageBox.Show("Присвоен CurrentUser");
                 if (MainWindow.CurrentUser.Roles.Contains(User.UserRole.Admin))
                 {
+                    MessageBox.Show("Определена роль");
                     NavigatorObject.Switch(new MainAdmin());
                 }
                 //else if (currentUser.Roles.Contains(User.UserRole.Student))

@@ -10,20 +10,16 @@ namespace WpfApp.Pages
     /// </summary>
     public partial class MainAdmin : UserControl
     {
-        private UserList userList;
-        private User currentUser;
 
         public MainAdmin()
         {
             InitializeComponent();
-            this.userList = userList;
-            this.currentUser = currentUser;
             AdminFrame.Content = new AdminUserList();
         }
 
         private void AdminUserList_Click(object sender, RoutedEventArgs e)
         {
-            //AdminFrame.Content = new AdminUserList();
+            AdminFrame.Content = new AdminUserList();
         }
 
         private void AdminInfo_Click(object sender, RoutedEventArgs e)
