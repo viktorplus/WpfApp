@@ -21,9 +21,19 @@
         </Grid.RowDefinitions>
 
         <!-- Новый ComboBox для выбора роли -->
-        <ComboBox x:Name="RoleComboBox" ItemsSource="{Binding AllRoles, RelativeSource={RelativeSource AncestorType=UserControl}}" 
-                  SelectedItem="{Binding SelectedRole, RelativeSource={RelativeSource AncestorType=UserControl}}" 
-                  DisplayMemberPath="ToString" />
+        <ComboBox x:Name="RoleComboBox"
+          ItemsSource="{Binding AllRoles}"
+          SelectedItem="{Binding SelectedRole, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+
+
+
 
         <ListView x:Name="UsersListView" Grid.Row="1" ItemsSource="{Binding Users}">
             <ListView.View>
