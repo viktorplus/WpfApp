@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Controls;
 using WpfApp.Domain;
@@ -7,11 +7,11 @@ using static WpfApp.Domain.User;
 
 namespace WpfApp.Pages
 {
-    public partial class AdminUserList : UserControl
+    public partial class AdminUserList : UserControl, INotifyPropertyChanged
     {
-        private ObservableCollection<User> userList;
         private List<UserRole> allRoles;
         private int pageSize = 10;
+        private int currentIndex = 0;
 
         private UserRole selectedRole;
         public UserRole SelectedRole
@@ -20,17 +20,18 @@ namespace WpfApp.Pages
             set
             {
                 selectedRole = value;
-                LoadUsers(0);
+                currentIndex = 0; // Сбросим индекс при изменении роли
+                LoadUsers();
+                OnPropertyChanged(nameof(SelectedRole));
             }
         }
 
         public AdminUserList()
         {
             InitializeComponent();
-            userList = new ObservableCollection<User>();
             allRoles = MainWindow.UserList.AllRoles;
             SelectedRole = UserRole.Student;
-            UsersListView.ItemsSource = userList;
+            UsersListView.ItemsSource = MainWindow.UserList.AllUsers.Take(pageSize).ToList();
             RoleComboBox.ItemsSource = allRoles;
             DataContext = this;
 
@@ -38,36 +39,16 @@ namespace WpfApp.Pages
             AddGridViewColumnHeaderClickEvent();
         }
 
-        private void LoadUsers(int startIndex)
+        private void LoadUsers()
         {
-            userList.Clear();
-            int endIndex = startIndex + pageSize;
-
+            int endIndex = currentIndex + pageSize;
             var usersToDisplay = MainWindow.UserList.AllUsers
                 .Where(user => user.Roles.Contains(SelectedRole))
+                .Skip(currentIndex)
+                .Take(pageSize)
                 .ToList();
 
-            for (int i = startIndex; i < endIndex && i < usersToDisplay.Count; i++)
-            {
-                userList.Add(usersToDisplay[i]);
-            }
-        }
-
-        private void NextPageButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            int startIndex = userList.Count;
-            LoadUsers(startIndex);
-        }
-
-        private void PreviousPageButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            int startIndex = System.Math.Max(userList.Count - pageSize * 2, 0);
-            LoadUsers(startIndex);
-        }
-
-        private void RoleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SelectedRole = (UserRole)RoleComboBox.SelectedItem;
+            UsersListView.ItemsSource = usersToDisplay;
         }
 
         private void AddGridViewColumnHeaderClickEvent()
@@ -82,13 +63,21 @@ namespace WpfApp.Pages
             }
         }
 
+        private void NextPageButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            currentIndex += pageSize;
+            LoadUsers();
+        }
+
+        private void PreviousPageButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            currentIndex = System.Math.Max(currentIndex - pageSize, 0);
+            LoadUsers();
+        }
+
         private void GridViewColumnHeader_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            GridViewColumnHeader column = (GridViewColumnHeader)e.OriginalSource;
-            string columnName = column.Content.ToString();
-
-            // Добавьте код сортировки по выбранной колонке
-            // Например, используйте LINQ для сортировки userList
+            // Реализуйте логику сортировки userList (теперь AllUsers), если требуется
         }
 
         private void UsersListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -97,5 +86,12 @@ namespace WpfApp.Pages
             // Добавьте код для показа кнопок удаления, изменения и добавления
             // на основе выбранной строки
         }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
