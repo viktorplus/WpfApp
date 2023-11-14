@@ -30,7 +30,6 @@ namespace WpfApp.Pages
 
                 if (MainWindow.CurrentUser.Roles.Contains(User.UserRole.Admin))
                 {
-                    MessageBox.Show("Определена роль");
                     NavigatorObject.Switch(new MainAdmin());
                 }
                 //else if (currentUser.Roles.Contains(User.UserRole.Student))
