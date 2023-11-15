@@ -44,7 +44,6 @@
                 <GridView>
                     <GridViewColumn Header="Имя" Width="100" DisplayMemberBinding="{Binding FirstName}" />
                     <GridViewColumn Header="Фамилия" Width="100" DisplayMemberBinding="{Binding LastName}" />
-                    
                     <GridViewColumn Header="Логин" Width="100" DisplayMemberBinding="{Binding Username}" />
                 </GridView>
             </ListView.View>

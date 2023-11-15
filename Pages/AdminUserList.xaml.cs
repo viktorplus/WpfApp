@@ -95,6 +95,8 @@ namespace WpfApp.Pages
         {
             currentIndex += pageSize;
             LoadUsers();
+
+
         }
 
         // Обработчик события для переключения на предыдущую страницу
@@ -124,7 +126,7 @@ namespace WpfApp.Pages
                 case "Логин":
                     sortedUsers = sortedUsers.OrderBy(user => user.Username).ToList();
                     break;
-                    // Добавьте дополнительные кейсы для других колонок, если необходимо
+                    //для других колонок
             }
 
             // Обновить источник данных для UsersListView
@@ -135,7 +137,7 @@ namespace WpfApp.Pages
         // Обработчик события изменения выделения в списке пользователей
         private void UsersListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Добавьте код для показа кнопок удаления, изменения и добавления
+            //  код для показа кнопок удаления, изменения и добавления
             // на основе выбранной строки
         }
 

@@ -49,10 +49,10 @@ namespace WpfApp.Domain
             OnPropertyChanged(nameof(Subjects));
         }
 
-        public List<Subject> GetAllSubjects()
-        {
-            return subjects;
-        }
+        //public List<Subject> GetAllSubjects()
+        //{
+        //    return subjects;
+        //}
 
         protected void OnPropertyChanged(string propertyName)
         {
