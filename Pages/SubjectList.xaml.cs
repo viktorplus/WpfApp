@@ -18,7 +18,7 @@ namespace WpfApp.Pages
             InitializeComponent();
             //MainWindow.SubjectList.GenerateSubjects();
             DataContext = MainWindow.SubjectList; // Используйте полное имя пространства имен
-            SubjectsListView.ItemsSource = MainWindow.SubjectList.GetAllSubjects().ToList();
+            SubjectsListView.ItemsSource = MainWindow.SubjectList.GetAllSubjects().Take(pageSize).ToList();
         }
 
         // Обработчик клика по кнопке "Добавить предмет"
