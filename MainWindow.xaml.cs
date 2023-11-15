@@ -16,6 +16,7 @@ namespace WpfApp
 
         public static User? CurrentUser { get; set; }
         public static UserList UserList { get; } = new UserList();
+        public static Domain.SubjectList SubjectList { get; } = new Domain.SubjectList();
 
 
         public MainWindow()

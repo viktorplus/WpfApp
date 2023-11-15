@@ -42,12 +42,12 @@
                 <Button
                 Width="100"
                 Height="35"
-                Content="Admin Info"
-                Click="AdminInfo_Click"
+                Content="Subject"
+                Click="SubjectList_Click"
                 materialDesign:ButtonAssist.CornerRadius="10"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
-                ToolTip="Admin Info">
+                ToolTip="SubjectList">
                 </Button>
             </Grid>
 

@@ -36,7 +36,7 @@ namespace WpfApp.Domain
 
         public void GenerateUsers()
         {
-            Random random = new Random();
+            //Random random = new Random();
 
             for (int i = 1; i <= 20; i++)
             {

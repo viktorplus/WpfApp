@@ -22,9 +22,9 @@ namespace WpfApp.Pages
             AdminFrame.Content = new AdminUserList();
         }
 
-        private void AdminInfo_Click(object sender, RoutedEventArgs e)
+        private void SubjectList_Click(object sender, RoutedEventArgs e)
         {
-
+            AdminFrame.Content = new SubjectList();
         }
     }
 }
