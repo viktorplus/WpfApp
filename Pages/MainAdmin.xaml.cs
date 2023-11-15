@@ -31,5 +31,15 @@ namespace WpfApp.Pages
         {
             AdminFrame.Content = new BuildingList();
         }
+
+        private void Rooms_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.Content = new ClassroomList();
+        }
+
+        private void Groups_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.Content = new GroupList();
+        }
     }
 }

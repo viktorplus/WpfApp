@@ -62,7 +62,30 @@
                 ToolTip="BuildingList">
                 </Button>
             </Grid>
-
+            <Grid Width="120">
+                <Button
+                Width="100"
+                Height="35"
+                Content="Rooms"
+                Click="Rooms_Click"
+                materialDesign:ButtonAssist.CornerRadius="10"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                ToolTip="RoomList">
+                </Button>
+            </Grid>
+            <Grid Width="120">
+                <Button
+                Width="100"
+                Height="35"
+                Content="Groups"
+                Click="Groups_Click"
+                materialDesign:ButtonAssist.CornerRadius="10"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                ToolTip="GroupList">
+                </Button>
+            </Grid>
 
         </StackPanel>
         <Border CornerRadius="30"  Margin="80 20 80 20"
