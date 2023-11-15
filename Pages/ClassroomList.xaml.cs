@@ -12,24 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfApp.Domain;
 
 namespace WpfApp.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainLecture.xaml
+    /// Логика взаимодействия для ClassroomList.xaml
     /// </summary>
-    public partial class MainLecture
+    public partial class ClassroomList : UserControl
     {
-        public MainLecture()
+        public ClassroomList()
         {
             InitializeComponent();
-            //LectureFrame.Content = new AdminUserList(userList, currentUser);
-        }
-
-        private void Schedules_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

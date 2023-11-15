@@ -36,11 +36,10 @@ namespace WpfApp.Pages
                 //{
                 //    NavigatorObject.Switch(new MainStudent(currentUser));
                 //}
-                //else if (currentUser.Roles.Contains(User.UserRole.Lecturer))
-                //{
-                //    NavigatorObject.Switch(new MainLecture(currentUser));
-                //}
-                // Другие варианты для других ролей
+                else if (MainWindow.CurrentUser.Roles.Contains(User.UserRole.Lecturer))
+                {
+                    NavigatorObject.Switch(new MainLecture());
+                }
             }
             else
             {

@@ -54,8 +54,8 @@ namespace WpfApp.Domain
             {
                 string firstName = "TeacherFirstName" + i;
                 string lastName = "TeacherLastName" + i;
-                string username = "teacher" + i;
-                string password = "password" + i;
+                string username = "t" + i;
+                string password = "t" + i;
 
                 List<UserRole> roles = new List<UserRole> { UserRole.Lecturer };
                 User teacher = new User(firstName, lastName, username, password, roles);

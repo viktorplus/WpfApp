@@ -36,17 +36,6 @@ namespace WpfApp.Pages
             SubjectsListView.ItemsSource = SubjectToDisplay;
         }
 
-
-        //// Обработчик клика по кнопке "Добавить предмет"
-        //private void AddSubjectButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    // Создаем новый предмет
-        //    Subject newSubject = new Subject ("Новый предмет"); 
-
-        //    // Добавляем предмет в список
-        //    MainWindow.SubjectList.AddSubject(newSubject);
-        //}
-
         // Обработчик события для переключения на следующую страницу
         private void NextPageButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
