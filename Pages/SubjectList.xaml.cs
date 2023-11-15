@@ -21,6 +21,22 @@ namespace WpfApp.Pages
             SubjectsListView.ItemsSource = MainWindow.SubjectList.GetAllSubjects().Take(pageSize).ToList();
         }
 
+        // Метод для загрузки пользователей в соответствии с текущей ролью и индексом страницы
+        private void LoadUsers()
+        {
+            int endIndex = currentIndex + pageSize;
+
+            // Фильтрация и пагинация пользователей в соответствии с выбранной ролью
+            var SubjectToDisplay = MainWindow.SubjectList.GetAllSubjects()
+                .Skip(currentIndex)
+                .Take(pageSize)
+                .ToList();
+
+            // Установка нового источника данных для списка пользователей
+            SubjectsListView.ItemsSource = SubjectToDisplay;
+        }
+
+
         // Обработчик клика по кнопке "Добавить предмет"
         private void AddSubjectButton_Click(object sender, RoutedEventArgs e)
         {
@@ -30,5 +46,7 @@ namespace WpfApp.Pages
             // Добавляем предмет в список
             MainWindow.SubjectList.AddSubject(newSubject);
         }
+
+
     }
 }
