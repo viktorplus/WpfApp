@@ -7,11 +7,18 @@ namespace WpfApp.Pages
 {
     public partial class SubjectList : UserControl
     {
+        // Размер страницы при пагинации
+        private int pageSize = 10;
+
+        // Текущий индекс страницы
+        private int currentIndex = 0;
+
         public SubjectList()
         {
             InitializeComponent();
-            MainWindow.SubjectList.GenerateSubjects();
+            //MainWindow.SubjectList.GenerateSubjects();
             DataContext = MainWindow.SubjectList; // Используйте полное имя пространства имен
+            SubjectsListView.ItemsSource = MainWindow.SubjectList.GetAllSubjects().ToList();
         }
 
         // Обработчик клика по кнопке "Добавить предмет"
