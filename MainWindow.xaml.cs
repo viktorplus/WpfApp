@@ -15,9 +15,11 @@ namespace WpfApp
     {
 
         public static User? CurrentUser { get; set; }
-        public static UserList UserList { get; } = new UserList();
+        public static Domain.UserList UserList { get; } = new Domain.UserList();
         public static Domain.SubjectList SubjectList { get; } = new Domain.SubjectList();
-
+        public static Domain.BuildingList BuildingList { get; } = new Domain.BuildingList();
+        public static Domain.ClassroomList ClassroomList { get; } = new Domain.ClassroomList();
+        public static Domain.GroupList GroupList { get; } = new Domain.GroupList();
 
         public MainWindow()
         {
