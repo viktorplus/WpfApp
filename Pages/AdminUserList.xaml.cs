@@ -15,7 +15,7 @@ namespace WpfApp.Pages
         public ICommand ChangeRoleCommand { get; set; }
 
         // Размер страницы при пагинации
-        private int pageSize = 10;
+        private int pageSize = 5;
 
         // Текущий индекс страницы
         private int currentIndex = 0;
