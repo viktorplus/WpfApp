@@ -8,7 +8,7 @@ namespace WpfApp.Pages
     public partial class SubjectList : UserControl
     {
         // Размер страницы при пагинации
-        private int pageSize = 10;
+        private int pageSize = 5;
 
         // Текущий индекс страницы
         private int currentIndex = 0;
@@ -37,15 +37,15 @@ namespace WpfApp.Pages
         }
 
 
-        // Обработчик клика по кнопке "Добавить предмет"
-        private void AddSubjectButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Создаем новый предмет
-            Subject newSubject = new Subject ("Новый предмет"); 
+        //// Обработчик клика по кнопке "Добавить предмет"
+        //private void AddSubjectButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    // Создаем новый предмет
+        //    Subject newSubject = new Subject ("Новый предмет"); 
 
-            // Добавляем предмет в список
-            MainWindow.SubjectList.AddSubject(newSubject);
-        }
+        //    // Добавляем предмет в список
+        //    MainWindow.SubjectList.AddSubject(newSubject);
+        //}
 
         // Обработчик события для переключения на следующую страницу
         private void NextPageButton_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -60,6 +60,31 @@ namespace WpfApp.Pages
             currentIndex = System.Math.Max(currentIndex - pageSize, 0);
             LoadUsers();
         }
+
+        private void ShowAddSubjectFormButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Показываем форму для добавления предмета
+            AddSubjectForm.Visibility = Visibility.Visible;
+        }
+
+        private void AddToSubjectListButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Получаем текст из TextBox
+            string subjectName = SubjectNameTextBox.Text;
+
+            // Создаем новый предмет
+            Subject newSubject = new Subject(subjectName);
+
+            // Добавляем предмет в список
+            MainWindow.SubjectList.AddSubject(newSubject);
+
+            // Скрываем форму для добавления предмета
+            AddSubjectForm.Visibility = Visibility.Collapsed;
+
+            // Очищаем TextBox
+            SubjectNameTextBox.Text = string.Empty;
+        }
+
 
     }
 }
