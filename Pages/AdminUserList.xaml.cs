@@ -126,6 +126,9 @@ namespace WpfApp.Pages
                 case "Логин":
                     sortedUsers = sortedUsers.OrderBy(user => user.Username).ToList();
                     break;
+                case "Group":
+                    sortedUsers = sortedUsers.OrderBy(user => user.Group).ToList();
+                    break;
                     //для других колонок
             }
 

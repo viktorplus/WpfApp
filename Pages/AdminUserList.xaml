@@ -45,6 +45,7 @@
                     <GridViewColumn Header="Имя" Width="100" DisplayMemberBinding="{Binding FirstName}" />
                     <GridViewColumn Header="Фамилия" Width="100" DisplayMemberBinding="{Binding LastName}" />
                     <GridViewColumn Header="Логин" Width="100" DisplayMemberBinding="{Binding Username}" />
+                    <GridViewColumn Header="Group" Width="100" DisplayMemberBinding="{Binding Group}" />
                 </GridView>
             </ListView.View>
         </ListView>

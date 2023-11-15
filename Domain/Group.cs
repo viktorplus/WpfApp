@@ -11,6 +11,7 @@ namespace WpfApp.Domain
             _groupName = groupName;
         }
 
+
         public string GroupName
         {
             get { return _groupName; }
@@ -22,6 +23,10 @@ namespace WpfApp.Domain
                     OnPropertyChanged(nameof(GroupName));
                 }
             }
+        }
+        public override string ToString()
+        {
+            return GroupName;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

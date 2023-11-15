@@ -44,9 +44,9 @@ namespace WpfApp.Domain
                 string lastName = "StudentLastName" + i;
                 string username = "student" + i;
                 string password = "password" + i;
-
+                Group? group = new Group("Group1");
                 List<UserRole> roles = new List<UserRole> { UserRole.Student };
-                User student = new User(firstName, lastName, username, password, roles);
+                User student = new User(firstName, lastName, username, password, roles, group);
                 AddUser(student);
             }
 
@@ -56,9 +56,10 @@ namespace WpfApp.Domain
                 string lastName = "TeacherLastName" + i;
                 string username = "t" + i;
                 string password = "t" + i;
+                Group? group = null;
 
                 List<UserRole> roles = new List<UserRole> { UserRole.Lecturer };
-                User teacher = new User(firstName, lastName, username, password, roles);
+                User teacher = new User(firstName, lastName, username, password, roles, group);
                 AddUser(teacher);
             }
 
@@ -68,9 +69,9 @@ namespace WpfApp.Domain
                 string lastName = "AdminLastName" + i;
                 string username = "ad" + i;
                 string password = "ad" + i;
-
+                Group? group = null;
                 List<UserRole> roles = new List<UserRole> { UserRole.Admin };
-                User teacher = new User(firstName, lastName, username, password, roles);
+                User teacher = new User(firstName, lastName, username, password, roles, group);
                 AddUser(teacher);
             }
 

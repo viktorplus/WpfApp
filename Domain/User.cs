@@ -11,6 +11,7 @@ namespace WpfApp.Domain
     {
         private string _firstname;
         private string _lastname;
+        private Group? _group = null;
         private string _username;
         private string _password;
         private List<UserRole> _roles;
@@ -23,14 +24,14 @@ namespace WpfApp.Domain
         }
 
 
-        public User(string firstName, string lastName, string username, string password, List<UserRole> roles)
+        public User(string firstName, string lastName, string username,  string password, List<UserRole> roles, Group? group)
         {
             _firstname = firstName;
             _lastname = lastName;
             _username = username;
             _password = HashPassword(password); // Хэшируем пароль при создании
             _roles = roles;
-
+            _group = group;
         }
         public string FirstName
         {
@@ -77,6 +78,15 @@ namespace WpfApp.Domain
             {
                 _roles = value;
                 OnPropertyChanged(nameof(Roles));
+            }
+        }
+        public Group Group
+        {
+            get { return _group; }
+            set
+            {
+                _group = value;
+                OnPropertyChanged(nameof(Group));
             }
         }
 
