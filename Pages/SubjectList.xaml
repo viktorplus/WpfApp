@@ -24,5 +24,10 @@
 
         <!-- Кнопка для добавления нового предмета -->
         <Button Content="Добавить предмет" Click="AddSubjectButton_Click" Grid.Row="1" Margin="5"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="4">
+            <Button Content="Предыдущие 10" Click="PreviousPageButton_Click"/>
+            <Button Content="Следующие 10" Click="NextPageButton_Click"/>
+        </StackPanel>
     </Grid>
 </UserControl>

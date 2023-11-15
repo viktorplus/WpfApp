@@ -26,7 +26,7 @@ namespace WpfApp.Pages
         {
             int endIndex = currentIndex + pageSize;
 
-            // Фильтрация и пагинация пользователей в соответствии с выбранной ролью
+            // Фильтрация
             var SubjectToDisplay = MainWindow.SubjectList.GetAllSubjects()
                 .Skip(currentIndex)
                 .Take(pageSize)
@@ -47,6 +47,19 @@ namespace WpfApp.Pages
             MainWindow.SubjectList.AddSubject(newSubject);
         }
 
+        // Обработчик события для переключения на следующую страницу
+        private void NextPageButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            currentIndex += pageSize;
+            LoadUsers();
+        }
+
+        // Обработчик события для переключения на предыдущую страницу
+        private void PreviousPageButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            currentIndex = System.Math.Max(currentIndex - pageSize, 0);
+            LoadUsers();
+        }
 
     }
 }
