@@ -5,8 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp.Pages"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="650" d:DesignWidth="800">
+    <Grid Cursor="">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ListView для отображения списка предметов -->
+        <ListView x:Name="BuildingsListView" Grid.Row="2" ItemsSource="{Binding Buildings, RelativeSource={RelativeSource AncestorType={x:Type local:BuildingList}}}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name Building" Width="200" DisplayMemberBinding="{Binding BuildingNumber}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="3" Cursor="">
+            <Button Content="Prev 10" Click="PreviousPageButton_Click"  Margin="5" />
+            <Button Content="Next 10" Click="NextPageButton_Click"  Margin="5" />
+
+        </StackPanel>
+        <!-- Кнопка для отображения формы добавления предмета -->
+        <Button Content="Add Building" Click="ShowAddSubjectFormButton_Click" Grid.Row="0" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <!-- Форма для добавления предмета (изначально скрыта) -->
+        <Grid x:Name="AddSubjectForm" Grid.Row="1" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <TextBox x:Name="SubjectNameTextBox" Width="150" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Button Content="Add to List" Click="AddToSubjectListButton_Click" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
+
+        </Grid>
+
     </Grid>
 </UserControl>

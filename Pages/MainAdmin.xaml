@@ -50,6 +50,18 @@
                 ToolTip="SubjectList">
                 </Button>
             </Grid>
+            <Grid Width="120">
+                <Button
+                Width="100"
+                Height="35"
+                Content="Buildings"
+                Click="Building_Click"
+                materialDesign:ButtonAssist.CornerRadius="10"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                ToolTip="BuildingList">
+                </Button>
+            </Grid>
 
 
         </StackPanel>

@@ -18,36 +18,36 @@ namespace WpfApp.Pages
             InitializeComponent();
             //MainWindow.SubjectList.GenerateSubjects();
             DataContext = MainWindow.BuildingList; // Используйте полное имя пространства имен
-            BuildingsListView.ItemsSource = MainWindow.SubjectList.GetAllSubjects().Take(pageSize).ToList();
+            BuildingsListView.ItemsSource = MainWindow.BuildingList.GetAllSubjects().Take(pageSize).ToList();
         }
 
         // Метод для загрузки пользователей в соответствии с текущей ролью и индексом страницы
-        private void LoadUsers()
+        private void LoadObjList()
         {
             int endIndex = currentIndex + pageSize;
 
             // Фильтрация
-            var SubjectToDisplay = MainWindow.SubjectList.GetAllSubjects()
+            var SubjectToDisplay = MainWindow.BuildingList.GetAllSubjects()
                 .Skip(currentIndex)
                 .Take(pageSize)
                 .ToList();
 
             // Установка нового источника данных для списка пользователей
-            SubjectsListView.ItemsSource = SubjectToDisplay;
+            BuildingsListView.ItemsSource = SubjectToDisplay;
         }
 
         // Обработчик события для переключения на следующую страницу
         private void NextPageButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             currentIndex += pageSize;
-            LoadUsers();
+            LoadObjList();
         }
 
         // Обработчик события для переключения на предыдущую страницу
         private void PreviousPageButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             currentIndex = System.Math.Max(currentIndex - pageSize, 0);
-            LoadUsers();
+            LoadObjList();
         }
 
         private void ShowAddSubjectFormButton_Click(object sender, RoutedEventArgs e)
@@ -62,16 +62,17 @@ namespace WpfApp.Pages
             string subjectName = SubjectNameTextBox.Text;
 
             // Создаем новый предмет
-            Subject newSubject = new Subject(subjectName);
+            Building newSubject = new Building(subjectName);
 
             // Добавляем предмет в список
-            MainWindow.SubjectList.AddSubject(newSubject);
+            MainWindow.BuildingList.AddBuilding(newSubject);
 
             // Скрываем форму для добавления предмета
             AddSubjectForm.Visibility = Visibility.Collapsed;
 
             // Очищаем TextBox
             SubjectNameTextBox.Text = string.Empty;
+            LoadObjList();
         }
 
 

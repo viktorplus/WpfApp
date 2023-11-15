@@ -6,7 +6,7 @@ namespace WpfApp.Domain
 {
     public class BuildingList : INotifyPropertyChanged
     {
-        private List<Building> _buildings = new List<Building>();
+        private List<Building> _buildings;
 
         public List<Building> Buildings
         {
@@ -20,7 +20,13 @@ namespace WpfApp.Domain
 
         public BuildingList()
         {
+            _buildings = new List<Building>();
             GenerateBuildings();
+            OnPropertyChanged(nameof(Buildings));
+        }
+        public List<Building> GetAllSubjects()
+        {
+            return _buildings;
         }
 
         public void GenerateBuildings()

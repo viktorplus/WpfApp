@@ -6,7 +6,7 @@ namespace WpfApp.Domain
 {
     public class ClassroomList : INotifyPropertyChanged
     {
-        private List<Classroom> _classrooms = new List<Classroom>();
+        private List<Classroom> _classrooms;
 
         public List<Classroom> Classrooms
         {
@@ -20,6 +20,7 @@ namespace WpfApp.Domain
 
         public ClassroomList()
         {
+            _classrooms = new List<Classroom>();
             GenerateClassrooms();
         }
 

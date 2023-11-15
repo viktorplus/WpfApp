@@ -26,5 +26,10 @@ namespace WpfApp.Pages
         {
             AdminFrame.Content = new SubjectList();
         }
+
+        private void Building_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.Content = new BuildingList();
+        }
     }
 }
