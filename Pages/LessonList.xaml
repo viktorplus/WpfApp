@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="WpfApp.Pages.LessonList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <ListView Name="LessonListView" ItemsSource="{Binding YourLessonListProperty}">
+            <ListView.View>
+                <GridView>
+                    <!-- Определите столбцы, соответствующие полям Lesson -->
+                    <GridViewColumn Header="Student" DisplayMemberBinding="{Binding Student}" />
+                    <GridViewColumn Header="Attendance" DisplayMemberBinding="{Binding Attendance}" />
+                    <GridViewColumn Header="Grade" DisplayMemberBinding="{Binding Grade}" />
+                    <!-- Добавьте другие столбцы по необходимости -->
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>
