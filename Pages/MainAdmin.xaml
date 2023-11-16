@@ -87,6 +87,19 @@
                 </Button>
             </Grid>
 
+            <Grid Width="120">
+                <Button
+                Width="100"
+                Height="35"
+                Content="Schedules"
+                Click="Schedules_Click"
+                materialDesign:ButtonAssist.CornerRadius="10"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                ToolTip="Schedules">
+                </Button>
+            </Grid>
+
         </StackPanel>
         <Border CornerRadius="30"  Margin="80 20 80 20"
                 BorderBrush="Black"

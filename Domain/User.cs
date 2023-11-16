@@ -110,10 +110,13 @@ namespace WpfApp.Domain
             return BCrypt.Net.BCrypt.HashPassword(password, salt);
         }
 
+
         public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged(string PropertyName)
+
+        protected void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }

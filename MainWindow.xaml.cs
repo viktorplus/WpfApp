@@ -20,11 +20,19 @@ namespace WpfApp
         public static Domain.BuildingList BuildingList { get; } = new Domain.BuildingList();
         public static Domain.ClassroomList ClassroomList { get; } = new Domain.ClassroomList();
         public static Domain.GroupList GroupList { get; } = new Domain.GroupList();
+        public static Domain.SchedulesList ScheduleList1 { get; } = new Domain.SchedulesList();
 
         public MainWindow()
         {
   
             InitializeComponent();
+
+            //UserList.GenerateUsers();
+            //SubjectList.GenerateSubjects();
+            //BuildingList.GenerateBuildings();
+            //ClassroomList.GenerateClassrooms();
+            //GroupList.GenerateGroups();
+            //ScheduleList1.GenerateSchedules();
 
             NavigatorObject.pageSwitcher = this;
             NavigatorObject.Switch(new MainPage());

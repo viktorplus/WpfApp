@@ -24,11 +24,12 @@ namespace WpfApp.Pages
         public MainLecture()
         {
             InitializeComponent();
-            //LectureFrame.Content = new AdminUserList(userList, currentUser);
+            LectureFrame.Content = new SchedulesList();
         }
 
         private void Schedules_Click(object sender, RoutedEventArgs e)
         {
+            LectureFrame.Content = new SchedulesList();
 
         }
     }

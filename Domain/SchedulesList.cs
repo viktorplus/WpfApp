@@ -7,9 +7,9 @@ namespace WpfApp.Domain
 {
     public class SchedulesList : INotifyPropertyChanged
     {
-        private List<Schedule> _schedules = new List<Schedule>();
+        private List<Schedules> _schedules;
 
-        public List<Schedule> Schedules
+        public List<Schedules> Schedules
         {
             get { return _schedules; }
             set
@@ -21,48 +21,48 @@ namespace WpfApp.Domain
 
         public SchedulesList()
         {
-            //GenerateSchedules();
+            _schedules = new List<Schedules>();
+            GenerateSchedules();
         }
 
-        //public void GenerateSchedules()
-        //{
-        //    // Здесь вы можете добавить логику для генерации расписания
-        //    // Пример:
-        //    // Добавляем расписание для первой группы в первом здании в первой аудитории
-        //    Schedule schedule1 = new Schedule
-        //    {
-        //        Subject = SubjectList.GetAllSubjects()[0],
-        //        Group = GroupList.Groups[0],
-        //        Classroom = BuildingList.Buildings[0].Classrooms[0],
-        //        Building = BuildingList.Buildings[0],
-        //        Date = DateTime.Now.AddDays(1),
-        //        Time = new TimeSpan(9, 0, 0),
-        //        Lecturer = UserList.GetAllUsers().Find(user => user.Roles.Contains(User.UserRole.Lecturer))
-        //    };
+        public void GenerateSchedules()
+        {
+            // Добавляем расписание для первой группы в первом здании в первой аудитории
+            Schedules schedule1 = new Schedules
+            {
+                Subject = MainWindow.SubjectList.Subjects[0],
+                Group = MainWindow.GroupList.Groups[0],
+                Classroom = MainWindow.ClassroomList.Classrooms[0],
+                Building = MainWindow.BuildingList.Buildings[0],
+                Date = DateTime.Now.AddDays(1),
+                Time = new TimeSpan(9, 0, 0),
+                Lecturer = MainWindow.UserList.AllUsers.Find(user => user.Roles.Contains(User.UserRole.Lecturer))
+            };
 
-        //    // Добавляем расписание для второй группы во втором здании во второй аудитории
-        //    Schedule schedule2 = new Schedule
-        //    {
-        //        Subject = SubjectList.GetAllSubjects()[1],
-        //        Group = GroupList.Groups[1],
-        //        Classroom = BuildingList.Buildings[1].Classrooms[1],
-        //        Building = BuildingList.Buildings[1],
-        //        Date = DateTime.Now.AddDays(1),
-        //        Time = new TimeSpan(10, 0, 0),
-        //        Lecturer = UserList.GetAllUsers().Find(user => user.Roles.Contains(User.UserRole.Lecturer))
-        //    };
 
-        //    AddSchedule(schedule1);
-        //    AddSchedule(schedule2);
-        //}
+            // Добавляем расписание для второй группы во втором здании во второй аудитории
+            Schedules schedule2 = new Schedules
+            {
+                Subject = MainWindow.SubjectList.Subjects[1],
+                Group = MainWindow.GroupList.Groups[1],
+                Classroom = MainWindow.ClassroomList.Classrooms[1],
+                Building = MainWindow.BuildingList.Buildings[0],
+                Date = DateTime.Now.AddDays(1),
+                Time = new TimeSpan(10, 0, 0),
+                Lecturer = MainWindow.UserList.AllUsers.Find(user => user.Roles.Contains(User.UserRole.Lecturer))
+            };
 
-        public void AddSchedule(Schedule schedule)
+            AddSchedule(schedule1);
+            AddSchedule(schedule2);
+        }
+
+        public void AddSchedule(Schedules schedule)
         {
             _schedules.Add(schedule);
             OnPropertyChanged(nameof(Schedules));
         }
 
-        public void RemoveSchedule(Schedule schedule)
+        public void RemoveSchedule(Schedules schedule)
         {
             _schedules.Remove(schedule);
             OnPropertyChanged(nameof(Schedules));

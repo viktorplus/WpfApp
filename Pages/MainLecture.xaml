@@ -35,7 +35,7 @@
                 materialDesign:ButtonAssist.CornerRadius="10"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
-                ToolTip="AdminUserList">
+                ToolTip="Schedules">
                 </Button>
             </Grid>
  

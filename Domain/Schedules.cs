@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace WpfApp.Domain
 {
-    public class Schedule : INotifyPropertyChanged
+    public class Schedules : INotifyPropertyChanged
     {
         private Subject _subject;
         private Group _group;
@@ -88,6 +88,10 @@ namespace WpfApp.Domain
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public override string ToString()
+        {
+            return $"{Subject} - {Group} - {Classroom} - {Building} - {Date} - {Time} - {Lecturer}";
         }
     }
 }
