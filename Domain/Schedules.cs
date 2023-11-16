@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows;
 
 namespace WpfApp.Domain
 {
@@ -12,6 +13,33 @@ namespace WpfApp.Domain
         private DateTime _date;
         private TimeSpan _time;
         private User _lecturer;
+
+        public Schedules(Subject subject, Group group, Classroom classroom, Building building, DateTime date, TimeSpan time, User lecturer)
+        {
+            _subject = subject;
+            _group = group;
+            _classroom = classroom;
+            _building = building;
+            _date = date;
+            _time = time;
+            _lecturer = lecturer;
+
+
+        }
+
+        private void ShowMessageBoxWithObjectData()
+        {
+            string message = $"Subject: {Subject}\n" +
+                             $"Group: {Group}\n" +
+                             $"Classroom: {Classroom}\n" +
+                             $"Building: {Building}\n" +
+                             $"Date: {Date}\n" +
+                             $"Time: {Time}\n" +
+                             $"Lecturer: {Lecturer}";
+
+            MessageBox.Show(message, "Object Data", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
 
         public Subject Subject
         {

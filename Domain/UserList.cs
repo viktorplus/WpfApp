@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using BCrypt.Net;
 using static WpfApp.Domain.User;
+using System.Linq;
+
 
 namespace WpfApp.Domain
 {
@@ -109,6 +111,12 @@ namespace WpfApp.Domain
 
             OnPropertyChanged(nameof(AllUsers));
         }
+
+        public List<User> LecturerList
+        {
+            get { return AllUsers.Where(user => user.Roles.Contains(UserRole.Lecturer)).ToList(); }
+        }
+
 
         private void OnPropertyChanged(string propertyName)
         {

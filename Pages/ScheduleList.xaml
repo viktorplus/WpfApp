@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp.Pages"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="1000">
     <Grid Cursor="">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -15,25 +15,11 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- ListView для отображения списка расписаний -->
-        <!--<ListView x:Name="ScheduleListView" ItemsSource="{Binding Schedules, RelativeSource={RelativeSource AncestorType={x:Type local:ScheduleList}}}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Subject" DisplayMemberBinding="{Binding Subject}" />
-                    <GridViewColumn Header="Group" DisplayMemberBinding="{Binding Group}" />
-                    <GridViewColumn Header="Classroom" DisplayMemberBinding="{Binding Classroom}" />
-                    <GridViewColumn Header="Building" DisplayMemberBinding="{Binding Building}" />
-                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" />
-                    <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Time}" />
-                    <GridViewColumn Header="Lecturer" DisplayMemberBinding="{Binding Lecturer}" />
-                </GridView>
-            </ListView.View>
-        </ListView>-->
         <ListView x:Name="ScheduleListView" ItemsSource="{Binding Schedules, RelativeSource={RelativeSource AncestorType={x:Type local:ScheduleList}}}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Subject" DisplayMemberBinding="{Binding Subject.Name}" />
-                    <GridViewColumn Header="Group" DisplayMemberBinding="{Binding Group.Group}" />
+                    <GridViewColumn Header="Group" DisplayMemberBinding="{Binding Group.GroupName}" />
                     <GridViewColumn Header="Classroom" DisplayMemberBinding="{Binding Classroom.RoomNumber}" />
                     <GridViewColumn Header="Building" DisplayMemberBinding="{Binding Building.BuildingNumber}" />
                     <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" />
@@ -44,6 +30,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
 
 
 

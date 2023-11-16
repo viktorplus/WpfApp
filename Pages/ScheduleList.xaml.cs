@@ -23,6 +23,7 @@ namespace WpfApp.Pages
             var SubjectToDisplay = MainWindow.ScheduleList1.Schedules.Skip(currentIndex).Take(pageSize).ToList();
             ScheduleListView.ItemsSource = SubjectToDisplay;
             ScheduleListView.Items.Refresh();
+
         }
 
         private void NextPageButton_Click(object sender, System.Windows.RoutedEventArgs e)

@@ -22,6 +22,7 @@ namespace WpfApp
         public static Domain.GroupList GroupList { get; } = new Domain.GroupList();
         public static Domain.SchedulesList ScheduleList1 { get; } = new Domain.SchedulesList();
 
+
         public MainWindow()
         {
   
@@ -33,6 +34,13 @@ namespace WpfApp
             //ClassroomList.GenerateClassrooms();
             //GroupList.GenerateGroups();
             //ScheduleList1.GenerateSchedules();
+
+            System.Diagnostics.Debug.WriteLine("Number of schedules in ScheduleList1: " + ScheduleList1.Schedules.Count);
+            // Проверка содержимого списка
+            foreach (var schedule in MainWindow.ScheduleList1.Schedules)
+            {
+                System.Diagnostics.Debug.WriteLine(schedule.ToString());
+            }
 
             NavigatorObject.pageSwitcher = this;
             NavigatorObject.Switch(new MainPage());

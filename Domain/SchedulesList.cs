@@ -28,33 +28,31 @@ namespace WpfApp.Domain
         public void GenerateSchedules()
         {
             // Добавляем расписание для первой группы в первом здании в первой аудитории
-            Schedules schedule1 = new Schedules
-            {
-                Subject = MainWindow.SubjectList.Subjects[0],
-                Group = MainWindow.GroupList.Groups[0],
-                Classroom = MainWindow.ClassroomList.Classrooms[0],
-                Building = MainWindow.BuildingList.Buildings[0],
-                Date = DateTime.Now.AddDays(1),
-                Time = new TimeSpan(9, 0, 0),
-                Lecturer = MainWindow.UserList.AllUsers.Find(user => user.Roles.Contains(User.UserRole.Lecturer))
-            };
-
+            Schedules schedule1 = new Schedules(
+                subject: MainWindow.SubjectList.Subjects[0],
+                group: MainWindow.GroupList.Groups[0],
+                classroom: MainWindow.ClassroomList.Classrooms[0],
+                building: MainWindow.BuildingList.Buildings[0],
+                date: DateTime.Now.AddDays(1),
+                time: new TimeSpan(9, 0, 0),
+                lecturer: MainWindow.UserList.AllUsers.Find(user => user.Roles.Contains(User.UserRole.Lecturer))
+            );
 
             // Добавляем расписание для второй группы во втором здании во второй аудитории
-            Schedules schedule2 = new Schedules
-            {
-                Subject = MainWindow.SubjectList.Subjects[1],
-                Group = MainWindow.GroupList.Groups[1],
-                Classroom = MainWindow.ClassroomList.Classrooms[1],
-                Building = MainWindow.BuildingList.Buildings[0],
-                Date = DateTime.Now.AddDays(1),
-                Time = new TimeSpan(10, 0, 0),
-                Lecturer = MainWindow.UserList.AllUsers.Find(user => user.Roles.Contains(User.UserRole.Lecturer))
-            };
+            Schedules schedule2 = new Schedules(
+                subject: MainWindow.SubjectList.Subjects[1],
+                group: MainWindow.GroupList.Groups[1],
+                classroom: MainWindow.ClassroomList.Classrooms[1],
+                building: MainWindow.BuildingList.Buildings[0],
+                date: DateTime.Now.AddDays(1),
+                time: new TimeSpan(10, 0, 0),
+                lecturer: MainWindow.UserList.AllUsers.Find(user => user.Roles.Contains(User.UserRole.Lecturer))
+            );
 
             AddSchedule(schedule1);
             AddSchedule(schedule2);
         }
+
 
         public void AddSchedule(Schedules schedule)
         {

@@ -43,7 +43,7 @@ namespace WpfApp.Pages
         }
         private void Schedules_Click(object sender, RoutedEventArgs e)
         {
-            AdminFrame.Content = new SchedulesList();
+            AdminFrame.Content = new ScheduleList();
 
         }
     }

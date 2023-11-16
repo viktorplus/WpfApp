@@ -6,7 +6,7 @@ namespace WpfApp.Domain
 {
     public class GroupList : INotifyPropertyChanged
     {
-        private List<Group> _groups = new List<Group>();
+        private List<Group> _groups;
 
         public List<Group> Groups
         {
@@ -20,6 +20,7 @@ namespace WpfApp.Domain
 
         public GroupList()
         {
+            _groups = new List<Group>();
             GenerateGroups();
         }
 

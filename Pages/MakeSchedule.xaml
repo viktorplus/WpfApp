@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="WpfApp.Pages.MakeSchedule"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <!-- Добавьте дополнительные строки, если необходимо -->
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Text="Subject:"/>
+            <ComboBox x:Name="SubjectComboBox" Width="200"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBlock Text="Group:"/>
+            <ComboBox x:Name="GroupComboBox" Width="200"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <TextBlock Text="Classroom:"/>
+            <ComboBox x:Name="ClassroomComboBox" Width="200"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <TextBlock Text="Building:"/>
+            <ComboBox x:Name="BuildingComboBox" Width="200"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal">
+            <TextBlock Text="Date:"/>
+            <DatePicker x:Name="DatePicker" Width="200"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Orientation="Horizontal">
+            <TextBlock Text="Time:"/>
+            <TextBox x:Name="TimeTextBox" Width="200"/>
+        </StackPanel>
+
+        <Button Grid.Row="6" Content="Create Schedule" Click="CreateSchedule_Click"/>
+    </Grid>
+</UserControl>

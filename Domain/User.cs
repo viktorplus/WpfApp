@@ -104,10 +104,21 @@ namespace WpfApp.Domain
             return BCrypt.Net.BCrypt.Verify(password, _password); // Проверяем хэшированный пароль
         }
 
+        private static readonly int SaltWorkFactor = 12;
+
         private string HashPassword(string password)
         {
-            string salt = BCrypt.Net.BCrypt.GenerateSalt(12); // Генерируем соль
+            string salt = BCrypt.Net.BCrypt.GenerateSalt(SaltWorkFactor);
             return BCrypt.Net.BCrypt.HashPassword(password, salt);
+        }
+
+
+        public override string ToString()
+        {
+            string roles = string.Join(", ", Roles);
+            string groupInfo = Group != null ? $"Group: {Group}" : "No Group";
+
+            return $"{FirstName} {LastName} (Username: {Username}, Roles: {roles}, {groupInfo})";
         }
 
 
