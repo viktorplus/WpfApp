@@ -46,5 +46,11 @@ namespace WpfApp.Pages
             AdminFrame.Content = new ScheduleList();
 
         }
+
+        private void MakeSchedules_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.Content = new MakeSchedule();
+
+        }
     }
 }
