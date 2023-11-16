@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 
@@ -13,6 +14,8 @@ namespace WpfApp.Domain
         private DateTime _date;
         private TimeSpan _time;
         private User _lecturer;
+        private List<Lesson> _lessons; // Список уроков
+
 
         public Schedules(Subject subject, Group group, Classroom classroom, Building building, DateTime date, TimeSpan time, User lecturer)
         {
@@ -24,7 +27,25 @@ namespace WpfApp.Domain
             _time = time;
             _lecturer = lecturer;
 
+            // Создаем уроки для каждого студента в группе
+            _lessons = new List<Lesson>();
+            CreateLessonsForStudents();
+        }
 
+        private void CreateLessonsForStudents()
+        {
+            foreach (User student in MainWindow.UserList.GetStudentsByGroup(_group.GroupName))
+            {
+                Lesson newLesson = new Lesson(student, false, 0, "", false, 0);
+                _lessons.Add(newLesson);
+            }
+        }
+
+
+
+        public List<Lesson> Lessons
+        {
+            get { return _lessons; }
         }
 
         private void ShowMessageBoxWithObjectData()

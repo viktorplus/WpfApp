@@ -117,6 +117,21 @@ namespace WpfApp.Domain
             get { return AllUsers.Where(user => user.Roles.Contains(UserRole.Lecturer)).ToList(); }
         }
 
+        public List<User> GetAllStudents()
+        {
+            return AllUsers.Where(user => user.Roles.Contains(UserRole.Student)).ToList();
+        }
+
+        public List<User> GetStudentsByGroup(string groupName)
+        {
+            return AllUsers.Where(user => user.Roles.Contains(UserRole.Student) && user.Group?.GroupName == groupName).ToList();
+        }
+
+        public List<User> GetAllLecturers()
+        {
+            return AllUsers.Where(user => user.Roles.Contains(UserRole.Lecturer)).ToList();
+        }
+
 
         private void OnPropertyChanged(string propertyName)
         {
@@ -127,5 +142,11 @@ namespace WpfApp.Domain
         {
             OnPropertyChanged(nameof(AllUsers));
         }
+
+        //UserList userList = new UserList();
+        //List<User> allStudents = userList.GetAllStudents();
+        //List<User> studentsInGroup = userList.GetStudentsByGroup("Group1");
+        //List<User> allLecturers = userList.GetAllLecturers();
+
     }
 }

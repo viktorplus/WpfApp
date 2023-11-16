@@ -20,11 +20,47 @@ namespace WpfApp.Pages
         private void LoadObjList()
         {
             int endIndex = currentIndex + pageSize;
-            var SubjectToDisplay = MainWindow.ScheduleList1.Schedules.Skip(currentIndex).Take(pageSize).ToList();
-            ScheduleListView.ItemsSource = SubjectToDisplay;
-            ScheduleListView.Items.Refresh();
 
+            if (MainWindow.CurrentUser != null)
+            {
+                if (MainWindow.CurrentUser.Roles.Contains(User.UserRole.Admin))
+                {
+                    // Администратор видит все расписания
+                    var schedulesToDisplay = MainWindow.ScheduleList1.Schedules
+                        .Skip(currentIndex)
+                        .Take(pageSize)
+                        .ToList();
+
+                    ScheduleListView.ItemsSource = schedulesToDisplay;
+                    ScheduleListView.Items.Refresh();
+                }
+                else if (MainWindow.CurrentUser.Roles.Contains(User.UserRole.Lecturer))
+                {
+                    // Преподаватель видит только расписания, где он указан в качестве преподавателя
+                    var lecturerSchedules = MainWindow.ScheduleList1.Schedules
+                        .Where(schedule => schedule.Lecturer == MainWindow.CurrentUser)
+                        .Skip(currentIndex)
+                        .Take(pageSize)
+                        .ToList();
+
+                    ScheduleListView.ItemsSource = lecturerSchedules;
+                    ScheduleListView.Items.Refresh();
+                }
+                else if (MainWindow.CurrentUser.Roles.Contains(User.UserRole.Student))
+                {
+                    // Студент видит только расписания своей группы
+                    var studentSchedules = MainWindow.ScheduleList1.Schedules
+                        .Where(schedule => schedule.Group == MainWindow.CurrentUser.Group)
+                        .Skip(currentIndex)
+                        .Take(pageSize)
+                        .ToList();
+
+                    ScheduleListView.ItemsSource = studentSchedules;
+                    ScheduleListView.Items.Refresh();
+                }
+            }
         }
+
 
         private void NextPageButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -38,20 +74,6 @@ namespace WpfApp.Pages
             LoadObjList();
         }
 
-        //private void ShowAddSubjectFormButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    AddSubjectForm.Visibility = Visibility.Visible;
-        //}
-
-        //private void AddToSubjectListButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    string subjectName = SubjectNameTextBox.Text;
-        //    Group newSubject = new Group(subjectName);
-        //    MainWindow.GroupList.AddGroup(newSubject);
-        //    AddSubjectForm.Visibility = Visibility.Collapsed;
-        //    SubjectNameTextBox.Text = string.Empty;
-        //    LoadObjList();
-        //}
 
 
     }
